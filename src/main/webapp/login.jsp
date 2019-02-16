@@ -24,7 +24,7 @@
                 <div style="height:80px;"></div>
                 <div class="media media-y margin-big-bottom">
                 </div>
-                <form action="<%=basePath%>user?cmd=stulogin" method="post" class="login-form">
+                <form action="${pageContext.request.contextPath}/user_login.action" method="post" class="login-form">
                     <div class="panel loginbox">
                         <div class="text-center margin-big padding-big-top">
                             <h1>在线考试系统</h1>

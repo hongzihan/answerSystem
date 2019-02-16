@@ -56,9 +56,22 @@
 			</property>
 			<property name="mappingResources">
 				<list>
-					<value>com/hzh/answer/domain/Customer.hbm.xml</value>			
+					<value>com/hzh/answer/domain/SysUser.hbm.xml</value>			
 				</list>
 			</property>
+	</bean>
+	
+	<!-- 配置用户模块 -->
+	<bean id="userDao" class="com.hzh.answer.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="userService" class="com.hzh.answer.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"/>
+	</bean>
+	
+	<bean id="userAction" class="com.hzh.answer.web.action.UserAction">
+		<property name="userService" ref="userService"/>
 	</bean>
 	
 	<!-- <bean id="customerDao"  class="com.hzh.dao.impl.CustomerDaoImpl">
