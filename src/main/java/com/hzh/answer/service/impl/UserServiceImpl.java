@@ -20,18 +20,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	/**
 	 * 用户登录实现
-	 * false 表示没有查到这个用户
-	 * true 表示查询到了，则返回1表示登录成功
 	 */
-	public boolean login(SysUser user) {
-		SysUser user2 = userDao.findOne(user);
-		if(user2==null) {
-			return false;
+	public SysUser login(SysUser user) {
+		SysUser existUser = userDao.findOne(user);
+		if(existUser==null) {
+			return null;
 		} else {
-			if(user2.getUsername().equals(user.getUsername())) {
-				return true;
+			if(existUser.getUsername().equals(user.getUsername())) {
+				return existUser;
 			} else {
-				return false;
+				return null;
 			}
 		}
 	}

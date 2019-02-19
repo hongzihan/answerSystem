@@ -2,6 +2,7 @@ package com.hzh.answer.web.action;
 
 import com.hzh.answer.domain.SysUser;
 import com.hzh.answer.service.UserService;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -25,8 +26,10 @@ public class UserAction extends ActionSupport implements ModelDriven<SysUser>{
 	 * @return
 	 */
 	public String login() {
-		boolean loginSuccess = userService.login(sysUser);
-		if(loginSuccess) {
+		SysUser existUser = userService.login(sysUser);
+		if(existUser != null) {
+			// 这里需要将查询到的user存入session
+			ActionContext.getContext().getSession().put("existUser",existUser);
 			return SUCCESS;
 		} else {
 			return LOGIN;

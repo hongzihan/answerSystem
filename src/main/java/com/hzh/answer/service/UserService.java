@@ -12,5 +12,5 @@ public interface UserService {
 	 * 登录方法
 	 * @param user
 	 */
-	boolean login(SysUser user);
+	SysUser login(SysUser user);
 }

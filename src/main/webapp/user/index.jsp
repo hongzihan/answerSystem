@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -37,23 +38,23 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="<%=basePath%>user?cmd=paperlist">试题列表</a></li>
-				<li><a href="<%=basePath%>user/studentPaper?cmd=stupaper">查看错题</a></li>
+				<li class="active"><a href="${pageCotnext.request.contextPath}/user_paperList.action">试题列表</a></li>
+				<li><a href="${pageCotnext.request.contextPath}/user_stuPaperUI.action">查看错题</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
-					<c:when test="${userid!=null}">
+					<c:when test="${existUser.userid!=null}">
 						<li>
 							<a>
-								<c:out value="${sessionScope.user.usertruename}" />
+								<s:property value="#session.existUser.usertruename"/>
 							</a>
 						</li>
 						<li>
-							<a href="<%=basePath%>sys/user?cmd=logout">注销</a>
+							<a href="${pageContext.request.contextPath}/user_logout.action">注销</a>
 						</li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="login.jsp">登录</a></li>
+						<li><a href="${pageContext.request.contextPath}/user_loginUI.action">登录</a></li>
 					</c:otherwise>
 				</c:choose>
 
