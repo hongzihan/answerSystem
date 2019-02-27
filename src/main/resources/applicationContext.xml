@@ -57,6 +57,7 @@
 			<property name="mappingResources">
 				<list>
 					<value>com/hzh/answer/domain/SysUser.hbm.xml</value>			
+					<value>com/hzh/answer/domain/Paper.hbm.xml</value>			
 				</list>
 			</property>
 	</bean>
@@ -72,6 +73,16 @@
 	
 	<bean id="userAction" class="com.hzh.answer.web.action.UserAction">
 		<property name="userService" ref="userService"/>
+		<property name="paperService" ref="paperService"/>
+	</bean>
+	
+	<!-- 配置试卷模块 -->
+	<bean id="paperDao" class="com.hzh.answer.dao.impl.PaperDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="paperService" class="com.hzh.answer.service.impl.PaperServiceImpl">
+		<property name="paperDao" ref="paperDao"/>
 	</bean>
 	
 	<!-- <bean id="customerDao"  class="com.hzh.dao.impl.CustomerDaoImpl">

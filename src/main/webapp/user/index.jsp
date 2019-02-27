@@ -23,6 +23,7 @@
 </head>
 
 <body>
+	<s:debug></s:debug>
 	<nav class="navbar navbar-default" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -86,7 +87,21 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${papers}" var="item">
+							<s:iterator value="paperList">
+								<tr>
+									<td>
+										<s:property value="pname"/>
+									</td>
+									<td>
+										<s:property value="scount"/>
+									</td>
+
+									<td>
+										<a href="<%=basePath%>user?cmd=paper&pname=${item.pname}">开始答题</a>
+									</td>
+								</tr>
+							</s:iterator>
+							<%-- <c:forEach items="${papers}" var="item">
 								<tr>
 									<td>
 										${item.pname}
@@ -99,7 +114,7 @@
 										<a href="<%=basePath%>user?cmd=paper&pname=${item.pname}">开始答题</a>
 									</td>
 								</tr>
-							</c:forEach>
+							</c:forEach> --%>
 						</tbody>
 					</table>
 				</div>

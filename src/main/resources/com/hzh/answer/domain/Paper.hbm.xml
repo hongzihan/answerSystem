@@ -3,15 +3,13 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-3-7 15:22:16 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
-    <class name="com.hzh.answer.domain.SysUser" table="sysuser" >
-        <id name="userid" column="userid">
+    <class name="com.hzh.answer.domain.Paper" table="paper" >
+        <id name="pid" column="pid">
             <generator class="native" />
         </id>
+        <property name="pname"/>
+        <property name="sid"/>
+        <property name="scount" column="scount"/>
         
-        <property name="username"/>
-        <property name="roleid"/>
-        <property name="usertruename"/>
-        <property name="userpwd"/>
-        <property name="userstate"/>
     </class>
 </hibernate-mapping>
