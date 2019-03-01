@@ -1,5 +1,8 @@
 package com.hzh.answer.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class SysFunction {
 	
 	public Integer getRr() {
@@ -41,6 +44,18 @@ public class SysFunction {
 	
 	private Integer rr;
 	
+	/**
+	 * 与SysRole的多对多关系
+	 * @return
+	 */
+	private Set<SysRole> sysRoles = new HashSet<SysRole>();
+	
+	public Set<SysRole> getSysRoles() {
+		return sysRoles;
+	}
+	public void setSysRoles(Set<SysRole> sysRoles) {
+		this.sysRoles = sysRoles;
+	}
 	public Integer getFunid() {
 		return funid;
 	}

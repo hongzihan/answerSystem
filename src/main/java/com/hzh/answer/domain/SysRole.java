@@ -1,5 +1,8 @@
 package com.hzh.answer.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 系统角色实体
  * @author Administrator
@@ -24,6 +27,30 @@ public class SysRole {
 	 */
 	private String roledesc;
 	
+	/**
+	 * 与用户的一对多关系
+	 * @return
+	 */
+	private Set<SysUser> sysUsers = new HashSet<>();
+	
+	/**
+	 * 与SysFunction的多对多关系
+	 * @return
+	 */
+	private Set<SysFunction> sysFunctions = new HashSet<SysFunction>();
+	
+	public Set<SysFunction> getSysFunctions() {
+		return sysFunctions;
+	}
+	public void setSysFunctions(Set<SysFunction> sysFunctions) {
+		this.sysFunctions = sysFunctions;
+	}
+	public Set<SysUser> getSysUsers() {
+		return sysUsers;
+	}
+	public void setSysUsers(Set<SysUser> sysUsers) {
+		this.sysUsers = sysUsers;
+	}
 	public Integer getRoleid() {
 		return roleid;
 	}
@@ -48,8 +75,4 @@ public class SysRole {
 	public void setRoledesc(String roledesc) {
 		this.roledesc = roledesc;
 	}
-	
-	
-	
-	
 }

@@ -9,9 +9,10 @@
         </id>
         
         <property name="username"/>
-        <property name="roleid"/>
         <property name="usertruename"/>
         <property name="userpwd"/>
         <property name="userstate"/>
+        
+        <many-to-one name="sysRole" class="com.hzh.answer.domain.SysRole" column="roleid"/>
     </class>
 </hibernate-mapping>

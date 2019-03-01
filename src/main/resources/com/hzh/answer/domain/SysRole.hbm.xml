@@ -11,5 +11,16 @@
         <property name="rolestate"/>
         <property name="roledesc"/>
         
+        <set name="sysUsers">
+        	<key column="roleid"/>
+        	
+        	<one-to-many class="com.hzh.answer.domain.SysUser"/>
+        </set>
+        
+        <set name="sysFunctions" table="roleright">
+        	<key column="roleid"/>
+        	
+        	<many-to-many class="com.hzh.answer.domain.SysFunction" column="funid"/>
+        </set>
     </class>
 </hibernate-mapping>

@@ -18,6 +18,19 @@ public class SysUser {
 	
 	private String rolename;
 	
+	/**
+	 * 与角色的多对一关系
+	 */
+	private SysRole sysRole;
+	
+	public SysRole getSysRole() {
+		return sysRole;
+	}
+
+	public void setSysRole(SysRole sysRole) {
+		this.sysRole = sysRole;
+	}
+
 	public Integer getUserid() {
 		return userid;
 	}
@@ -73,14 +86,5 @@ public class SysUser {
 	public void setRolename(String rolename) {
 		this.rolename = rolename;
 	}
-
-	@Override
-	public String toString() {
-		return "SysUser [userid=" + userid + ", roleid=" + roleid + ", username=" + username + ", usertruename="
-				+ usertruename + ", userpwd=" + userpwd + ", userstate=" + userstate + ", rolename=" + rolename + "]";
-	}
-
-	
-	
 	
 }
