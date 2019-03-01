@@ -33,7 +33,7 @@
 <body>
 <s:debug></s:debug>
 	<form id="paperForm" name="errorPaperForm"
-		action="${pageContext.request.contextPath }/studentPaper_errorSubjectPage.action?userid=<s:property value="userid"/>&spid=<s:property value="spid"/>"
+		action="${pageContext.request.contextPath }/studentPaper_allErrorSubjectPage.action?userid=<s:property value="userid"/>"
 		method=post>
     <nav class="navbar navbar-default" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,23 +54,23 @@
                 <li class="active"><a href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=<s:property value="userid"/>">查看错题</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-					<c:choose>
-						<c:when test="${existUser.userid!=null}">
-							<li>
-								<a>
-									<s:property value="#session.existUser.usertruename"/>
-								</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/user_logout.action">注销</a>
-							</li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="${pageContext.request.contextPath}/user_login.action">登录</a></li>
-						</c:otherwise>
-					</c:choose>
-	
-				</ul>
+                <c:choose>
+					<c:when test="${existUser.userid!=null}">
+						<li>
+							<a>
+								<s:property value="#session.existUser.usertruename"/>
+							</a>
+						</li>
+						<li>
+		                    <a href="<%=basePath%>sys/user?cmd=logout">注销</a>
+		                </li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="login.jsp">登录</a></li>
+					</c:otherwise>
+				</c:choose>
+                
+            </ul>
         </div>
         <!-- /.navbar-collapse -->
     </nav>

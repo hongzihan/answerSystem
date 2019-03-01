@@ -3,18 +3,23 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-3-7 15:22:16 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
-    <class name="com.hzh.answer.domain.Paper" table="paper" >
-        <id name="pid" column="pid">
+    <class name="com.hzh.answer.domain.Subject" table="subject" >
+        <id name="sid" column="sid">
             <generator class="native" />
         </id>
-        <property name="pname"/>
-        <property name="scount"/>
+        <property name="scontent"/>
+        <property name="sa"/>
+        <property name="sb"/>
+        <property name="sc"/>
+        <property name="sd"/>
+        <property name="skey"/>
+        <property name="sstate"/>
         
-        <set name="subjects" table="temp_paper_subject" lazy="false">
+        <set name="papers" table="temp_paper_subject">
         	<!-- 中间表中对应当前表的外键的名称 -->
-        	<key column="paper_id"/>
+        	<key column="subject_id"/>
         	<!-- 对方的实体类和对方在中间表中对应的外键的名称 -->
-        	<many-to-many class="com.hzh.answer.domain.Subject" column="subject_id"/>
+        	<many-to-many class="com.hzh.answer.domain.Paper" column="paper_id"/>
         </set>
     </class>
 </hibernate-mapping>

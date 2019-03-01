@@ -18,6 +18,9 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	
+	<!-- 开启注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
 	<!-- 配置事务增强 -->
 	<tx:advice id="advice" transaction-manager="transactionManager">
 	    <tx:attributes>	     
@@ -58,6 +61,8 @@
 				<list>
 					<value>com/hzh/answer/domain/SysUser.hbm.xml</value>			
 					<value>com/hzh/answer/domain/Paper.hbm.xml</value>			
+					<value>com/hzh/answer/domain/StudentPaper.hbm.xml</value>			
+					<value>com/hzh/answer/domain/Subject.hbm.xml</value>			
 				</list>
 			</property>
 	</bean>
@@ -71,9 +76,8 @@
 		<property name="userDao" ref="userDao"/>
 	</bean>
 	
-	<bean id="userAction" class="com.hzh.answer.web.action.UserAction">
+	<bean id="userAction" class="com.hzh.answer.web.action.UserAction" scope="prototype">
 		<property name="userService" ref="userService"/>
-		<property name="paperService" ref="paperService"/>
 	</bean>
 	
 	<!-- 配置试卷模块 -->
@@ -85,14 +89,34 @@
 		<property name="paperDao" ref="paperDao"/>
 	</bean>
 	
-	<!-- <bean id="customerDao"  class="com.hzh.dao.impl.CustomerDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<bean id="paperAction" class="com.hzh.answer.web.action.PaperAction" scope="prototype">
+		<property name="paperService" ref="paperService"/>
 	</bean>
-	<bean id="customerService"  class="com.hzh.service.impl.CustomerServiceImpl">
-		<property name="customerDao" ref="customerDao" />
+	
+	<!-- 配置题目模块 -->
+	<bean id="subjectDao" class="com.hzh.answer.dao.impl.SubjectDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	<bean id="customerAction"  class="com.hzh.web.CustomerAction" scope="prototype">
-		<property name="customerService" ref="customerService" />
-	</bean> -->
+	
+	<bean id="subjectService" class="com.hzh.answer.service.impl.SubjectServiceImpl">
+		<property name="subjectDao" ref="subjectDao"/>
+	</bean>
+	
+	<bean id="subjectAction" class="com.hzh.answer.web.action.SubjectAction" scope="prototype">
+		<property name="subjectService" ref="subjectService"/>
+	</bean>
+	
+	<!-- 配置学生已完成的试卷模块 -->
+	<bean id="studentPaperDao" class="com.hzh.answer.dao.impl.StudentPaperDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="studentPaperService" class="com.hzh.answer.service.impl.StudentPaperServiceImpl">
+		<property name="studentPaperDao" ref="studentPaperDao"/>
+	</bean>
+	
+	<bean id="studentPaperAction" class="com.hzh.answer.web.action.StudentPaperAction" scope="prototype">
+		<property name="studentPaperService" ref="studentPaperService"/>
+	</bean>
 </beans>
 	

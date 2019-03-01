@@ -1,5 +1,8 @@
 package com.hzh.answer.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author 61780
  *
@@ -15,6 +18,19 @@ public class Subject {
 	private String skey;
 	private Integer sstate;
 	private String studentkey;
+	
+	// 与Paper建立多对一关系
+	private Set<Paper> papers = new HashSet<Paper>();
+	
+	
+	
+	public Set<Paper> getPapers() {
+		return papers;
+	}
+	public void setPapers(Set<Paper> papers) {
+		this.papers = papers;
+	}
+	
 	public Integer getSid() {
 		return sid;
 	}

@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.hzh.answer.dao.BaseDao;
 import com.hzh.answer.domain.Paper;
+import com.hzh.answer.domain.Subject;
 
 public interface PaperDao extends BaseDao<Paper> {
-	List<Paper> findAllWithItemCount();
+
+	List<Subject> findByPname(String pname);
 }

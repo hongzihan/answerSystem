@@ -1,6 +1,13 @@
 package com.hzh.answer.domain;
 
+/**
+ * 一个用于记录题目回答情况的数据表
+ * @author ken
+ *
+ */
 public class StudentPaper {
+	// StudentPaper的主键
+	private Integer stupid; 
 	private String spid;
 	private Integer userid;
 	private Integer sid;
@@ -9,6 +16,14 @@ public class StudentPaper {
 	private String pname;
 	private Integer rightcount;
 	private Integer errorcount;
+	
+	
+	public Integer getStupid() {
+		return stupid;
+	}
+	public void setStupid(Integer stupid) {
+		this.stupid = stupid;
+	}
 	public String getPname() {
 		return pname;
 	}
@@ -61,9 +76,9 @@ public class StudentPaper {
 	}
 	@Override
 	public String toString() {
-		return "Studentpaper [pname=" + pname + ", rightcount=" + rightcount
-				+ ", sid=" + sid + ", spid=" + spid + ", studentkey="
-				+ studentkey + ", studentstate=" + studentstate + ", userid="
-				+ userid + "]";
+		return "StudentPaper [stupid=" + stupid + ", spid=" + spid + ", userid=" + userid + ", sid=" + sid
+				+ ", studentkey=" + studentkey + ", studentstate=" + studentstate + ", pname=" + pname + ", rightcount="
+				+ rightcount + ", errorcount=" + errorcount + "]";
 	}
+	
 }

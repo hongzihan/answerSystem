@@ -10,6 +10,7 @@ import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.hzh.answer.dao.BaseDao;
+import com.hzh.answer.domain.StudentPaper;
 
 /**
  * 通用的Dao层实现
@@ -72,7 +73,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		List<T> list = (List<T>) this.getHibernateTemplate().findByCriteria(detachedCriteria, begin, pageSize);
 		return list;
 	}
-
+	
 	@Override
 	public List<T> findAll() {
 		return (List<T>) this.getHibernateTemplate().find("from " + clazz.getSimpleName());

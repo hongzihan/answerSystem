@@ -9,21 +9,28 @@ import org.hibernate.criterion.DetachedCriteria;
 
 import com.hzh.answer.dao.PaperDao;
 import com.hzh.answer.domain.Paper;
+import com.hzh.answer.domain.Subject;
 
 public class PaperDaoImpl extends BaseDaoImpl<Paper> implements PaperDao {
 	
 	@Override
-	public List<Paper> findAllWithItemCount() {
-		List<Object> listObject = (List<Object>) this.getHibernateTemplate().find("select p.pname,count(*) as scount from Paper p group by p.pname");
-		List<Paper> list = new ArrayList<Paper>();
-		for (Object object : listObject) {
-			Object[] tempObjects = (Object[]) object;
-			Paper paper = new Paper();
-			paper.setPname((String) tempObjects[0]);
-			paper.setScount((Long) tempObjects[1]);
-			list.add(paper);
+	public List<Subject> findByPname(String pname) {
+		List<Object> list = (List<Object>) this.getHibernateTemplate().find("select s1.sid,s1.scontent,s1.sa,s1.sb,s1.sc,s1.sd,s1.skey,s1.sstate from Paper p1,Subject s1 where p1.sid = s1.sid and p1.pname=?", pname);
+		List<Subject> subjectsList = new ArrayList<Subject>();
+		for (Object object : list) {
+			Object[] objects = (Object[]) object;
+			Subject subject = new Subject();
+			subject.setSid((Integer) objects[0]);
+			subject.setScontent((String) objects[1]);
+			subject.setSa((String) objects[2]);
+			subject.setSb((String) objects[3]);
+			subject.setSc((String) objects[4]);
+			subject.setSd((String) objects[5]);
+			subject.setSkey((String) objects[6]);
+			subject.setSstate((Integer) objects[7]);
+			subjectsList.add(subject);
 		}
-		return list;
+		return subjectsList;
 	}
 
 }

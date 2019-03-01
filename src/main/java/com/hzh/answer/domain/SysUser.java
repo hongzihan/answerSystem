@@ -74,6 +74,12 @@ public class SysUser {
 		this.rolename = rolename;
 	}
 
+	@Override
+	public String toString() {
+		return "SysUser [userid=" + userid + ", roleid=" + roleid + ", username=" + username + ", usertruename="
+				+ usertruename + ", userpwd=" + userpwd + ", userstate=" + userstate + ", rolename=" + rolename + "]";
+	}
+
 	
 	
 	

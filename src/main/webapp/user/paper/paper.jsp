@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -22,6 +23,8 @@
 </head>
 
 <body>
+	<input type="hidden" value="<s:property value="#session.existUser.userid"/>" name="userid" id="userid">
+	<s:debug></s:debug>
 	<nav class="navbar navbar-default" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -37,28 +40,27 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="<%=basePath%>user?cmd=paperlist">试题列表</a></li>
-				<li><a href="<%=basePath%>user/studentPaper?cmd=stupaper">查看错题</a></li>
+				<li><a href="${pageContext.request.contextPath}/paper_findAllPaper.action">试题列表</a></li>
+				<li><a href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=<s:property value="userid"/>">查看错题</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<c:choose>
-					<c:when test="${userid!=null}">
-						<li>
-							<a>
-								<c:out value="${sessionScope.user.usertruename}" />
-							</a>
-						</li>
-						<li>
-							<a href="<%=basePath%>sys/user?cmd=logout">注销</a>
-						</li>
-					</c:when>
-					<c:otherwise>
-						<li><a href="login.jsp">登录</a></li>
-
-					</c:otherwise>
-				</c:choose>
-
-			</ul>
+					<c:choose>
+						<c:when test="${existUser.userid!=null}">
+							<li>
+								<a>
+									<s:property value="#session.existUser.usertruename"/>
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/user_logout.action">注销</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="${pageContext.request.contextPath}/user_login.action">登录</a></li>
+						</c:otherwise>
+					</c:choose>
+	
+				</ul>
 		</div>
 		<!-- /.navbar-collapse -->
 	</nav>
@@ -67,32 +69,35 @@
 		<div class="panel panel-default">
 			<div class="panel-heading text-center">
 				<h3 class="panel-title">
-					<c:out value="${pname}"></c:out>
+					<s:property value="pname"/>
 				</h3>
 			</div>
 			<div class="panel-body">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion" href="#Radio">单选题（共 <c:out value="${fn:length(subjects)}"></c:out> 题，每题2分）</a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#Radio">单选题（共 <s:property value="totalCount"/> 题，每题2分）</a>
 						</h4>
 					</div>
 					<form action="" method="POST" role="form">
 						<div id="Radio" class="panel-collapse collapse in">
 							<div class="panel-body">
 								<ol>
-									<c:forEach items="${subjects}" var="item" varStatus="status">
-										<div class="subject" data-i="${status.index}" data-answer="false" data-sid="${item.sid}" data-key="${item.skey}" data-state="0"
+									<s:iterator value="list" status="status">
+										<div class="subject" data-i="${status.index}" data-answer="false" data-sid="<s:property value="sid"/>" data-key="<s:property value="skey"/>" data-state="0"
 											data-skey>
-											<li> ${item.scontent}</li>
+											<li>
+												<s:property value="scontent"/>
+											</li>
+											
 											<ol>
-												<li><label><input type="radio" value="A" name="${item.sid}">${item.sa}</label></li>
-												<li><label><input type="radio" value="B" name="${item.sid}">${item.sb}</label></li>
-												<li><label><input type="radio" value="C" name="${item.sid}">${item.sc}</label></li>
-												<li><label><input type="radio" value="D" name="${item.sid}">${item.sd}</label></li>
+												<li><label><input type="radio" value="A" name="<s:property value="sid"/>"><s:property value="sa"/></label></li>
+												<li><label><input type="radio" value="B" name="<s:property value="sid"/>"><s:property value="sb"/></label></li>
+												<li><label><input type="radio" value="C" name="<s:property value="sid"/>"><s:property value="sc"/></label></li>
+												<li><label><input type="radio" value="D" name="<s:property value="sid"/>"><s:property value="sd"/></label></li>
 											</ol>
 										</div>
-									</c:forEach>
+									</s:iterator>
 								</ol>
 								<button class="btn btn-success" type="submit">交卷</button>
 							</div>
@@ -107,9 +112,9 @@
 			00时00分00秒
 		</section>
 		<section class="timu">
-			<c:forEach items="${subjects}" var="item" varStatus="status">
+			<s:iterator value="list" status="status">
 				<div data-i="${ status.index}">${ status.index + 1}</div>
-			</c:forEach>
+			</s:iterator>
 		</section>
 	</aside>
 
@@ -158,7 +163,7 @@
 				content: "还有"+unanswer+"道题目未做！",
 				icon:2,
 				end:function(){
-					postAnswer();
+					
 				}
 				});
 			}else{
@@ -168,8 +173,10 @@
 		// (2)计算得分
 		function getScore(){
 			//var spid = n
+			var userid = $("#userid").val();
+			var spid = now.getTime();
 			$.post({
-		        url: basePath + 'user/studentPaper?cmd=score&userid='+'${userid}'+'&spid='+ now.getTime(),
+		        url: basePath + 'studentPaper_caculateScore.action?userid='+userid+'&spid='+ spid,
 		        contentType: false,
 		        processData: false,
 		        success: function(res) {
@@ -179,7 +186,7 @@
 						content: res,
 						icon:1,
 						end:function(){
-							location.href = basePath+'user/studentPaper?cmd=stupaper';
+							location.href = basePath+'studentPaper_errorSubjectPage.action?userid=' + userid + '&spid=' + spid;
 						}
 					})
 		        },
@@ -194,7 +201,7 @@
 		function postAnswer(){
 			var index = layer.load(0, {shade: false});
 			var pname = '${pname}';
-			var userid = '${userid}';
+			var userid = $("#userid").val();
 			$('.subject').each(function(index){
 				var i = index
 				var self = $(this)
@@ -202,7 +209,7 @@
 				var datas = $.param(data)
 				console.log(datas)
 				$.post({
-					url: basePath+'/user?cmd=answer&'+ datas,
+					url: basePath+'/studentPaper_answer?'+ datas,
 					contentType: false,
 					processData: false,
 					success:function(){
