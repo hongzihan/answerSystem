@@ -63,6 +63,8 @@
 					<value>com/hzh/answer/domain/Paper.hbm.xml</value>			
 					<value>com/hzh/answer/domain/StudentPaper.hbm.xml</value>			
 					<value>com/hzh/answer/domain/Subject.hbm.xml</value>			
+					<value>com/hzh/answer/domain/SysFunction.hbm.xml</value>			
+					<value>com/hzh/answer/domain/SysRole.hbm.xml</value>				
 				</list>
 			</property>
 	</bean>

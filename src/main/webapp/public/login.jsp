@@ -69,12 +69,12 @@
 		    if (type == 'student') {
 		        $(document).attr("title", "学生登录");
 		        $("#mes").html('');
-		        $(".login-form").attr("action", basePath + "user?cmd=stulogin");
+		        $(".login-form").attr("action", basePath + "user_login.action");
 		    }else {
 		        $(document).attr("title", "管理员登录");
 		        $("#register").html('');
 		        $("#mes").html('');
-		        $(".login-form").attr("action", basePath + "sys/user?cmd=login");
+		        $(".login-form").attr("action", basePath + "user_adminLogin.action");
 		    }
 		})
 	</script>
