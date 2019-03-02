@@ -7,7 +7,7 @@
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="success">/user/index.jsp</result>
 			<result name="normalLoginSuccess" type="redirectAction">/paper_findAllPaper.action</result>
-			<result name="LOGIN">/public/login.jsp</result>
+			<result name="login">/public/login.jsp</result>
 			<result name="logout">/public/login.jsp</result>
 			<result name="adminLoginSuccess">/sys/index.jsp</result>
 		</action>

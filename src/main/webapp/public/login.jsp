@@ -69,12 +69,12 @@
 		    if (type == 'student') {
 		        $(document).attr("title", "学生登录");
 		        $("#mes").html('');
-		        $(".login-form").attr("action", basePath + "user_login.action");
+		        $(".login-form").attr("action", basePath + "user_login.action?isAdmin=false");
 		    }else {
 		        $(document).attr("title", "管理员登录");
 		        $("#register").html('');
 		        $("#mes").html('');
-		        $(".login-form").attr("action", basePath + "user_login.action");
+		        $(".login-form").attr("action", basePath + "user_login.action?isAdmin=true");
 		    }
 		})
 	</script>
