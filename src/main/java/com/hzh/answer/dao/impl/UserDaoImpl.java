@@ -20,9 +20,9 @@ public class UserDaoImpl extends BaseDaoImpl<SysUser> implements UserDao {
 	 * 实现查询单一用户的方法
 	 */
 	public SysUser findOne(SysUser sysUser) {
-		List<SysUser> list = (List<SysUser>) this.getHibernateTemplate().find("from SysUser where username=?", sysUser.getUsername());
+		List<SysUser> list = (List<SysUser>) this.getHibernateTemplate().find("from SysUser where username=? and userpwd=?", sysUser.getUsername(), sysUser.getUserpwd());
 		if(!list.isEmpty()) {
-			return list.get(0);
+			return (SysUser)list.get(0);
 		}
 		return null;
 	}

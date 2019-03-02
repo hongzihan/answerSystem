@@ -12,5 +12,7 @@ public interface UserService {
 	 * 登录方法
 	 * @param user
 	 */
-	SysUser login(SysUser user);
+	Integer login(SysUser user);
+
+	SysUser findOneBySimpleUser(SysUser sysUser);
 }

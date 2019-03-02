@@ -74,7 +74,7 @@
 		        $(document).attr("title", "管理员登录");
 		        $("#register").html('');
 		        $("#mes").html('');
-		        $(".login-form").attr("action", basePath + "user_adminLogin.action");
+		        $(".login-form").attr("action", basePath + "user_login.action");
 		    }
 		})
 	</script>

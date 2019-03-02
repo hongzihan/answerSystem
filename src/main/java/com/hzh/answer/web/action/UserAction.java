@@ -36,11 +36,18 @@ public class UserAction extends ActionSupport implements ModelDriven<SysUser>{
 	 * @return
 	 */
 	public String login() {
-		SysUser existUser = userService.login(sysUser);
-		if(existUser != null) {
+		Integer loginStatus = userService.login(sysUser);
+		if(loginStatus.equals(1)) {
+			// 普通学生登录
 			// 这里需要将查询到的user存入session
+			SysUser existUser = userService.findOneBySimpleUser(sysUser);
 			ActionContext.getContext().getSession().put("existUser",existUser);
 			return "normalLoginSuccess";
+		} else if(loginStatus.equals(-1)){
+			// 管理员登录
+			SysUser existUser = userService.findOneBySimpleUser(sysUser);
+			ActionContext.getContext().getSession().put("existUser",existUser);
+			return "adminLoginSuccess";
 		} else {
 			return LOGIN;
 		}
@@ -54,7 +61,5 @@ public class UserAction extends ActionSupport implements ModelDriven<SysUser>{
 		session.remove("existUser");
 		return "logout";
 	}
-	
-	
 	
 }

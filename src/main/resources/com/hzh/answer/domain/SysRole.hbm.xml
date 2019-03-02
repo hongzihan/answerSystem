@@ -11,14 +11,14 @@
         <property name="rolestate"/>
         <property name="roledesc"/>
         
-        <set name="sysUsers">
-        	<key column="roleid"/>
+        <set name="sysUsers" lazy="false">
+        	<key column="user_role_id"/>
         	
         	<one-to-many class="com.hzh.answer.domain.SysUser"/>
         </set>
         
-        <set name="sysFunctions" table="roleright">
-        	<key column="roleid"/>
+        <set name="sysFunctions" table="roleright" inverse="true">
+        	<key column="role_id"/>
         	
         	<many-to-many class="com.hzh.answer.domain.SysFunction" column="funid"/>
         </set>

@@ -13,6 +13,6 @@
         <property name="userpwd"/>
         <property name="userstate"/>
         
-        <many-to-one name="sysRole" class="com.hzh.answer.domain.SysRole" column="roleid"/>
+        <many-to-one name="sysRole" class="com.hzh.answer.domain.SysRole" column="user_role_id" lazy="false"/>
     </class>
 </hibernate-mapping>

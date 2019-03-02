@@ -10,7 +10,6 @@ public class SysUser {
 	 * 注意写注释
 	 */
 	private Integer userid;
-	private Integer roleid;
 	private String username;
 	private String usertruename;
 	private String userpwd;
@@ -37,14 +36,6 @@ public class SysUser {
 
 	public void setUserid(Integer userid) {
 		this.userid = userid;
-	}
-
-	public Integer getRoleid() {
-		return roleid;
-	}
-
-	public void setRoleid(Integer roleid) {
-		this.roleid = roleid;
 	}
 
 	public String getUsername() {
@@ -86,5 +77,12 @@ public class SysUser {
 	public void setRolename(String rolename) {
 		this.rolename = rolename;
 	}
+
+	@Override
+	public String toString() {
+		return "SysUser [userid=" + userid + ", username=" + username + ", usertruename="
+				+ usertruename + ", userpwd=" + userpwd + ", userstate=" + userstate + ", rolename=" + rolename + "]";
+	}
+	
 	
 }
