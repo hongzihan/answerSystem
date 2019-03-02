@@ -15,6 +15,10 @@
 		<action name="paper_*" class="paperAction" method="{1}">
 			<result name="findAllPaperSuccess">/user/index.jsp</result>
 			<result name="searchSuccess">/user/paper/paper.jsp</result>
+			<result name="listSuccess">/sys/paper/list.jsp</result>
+			<result name="viewPaperSuccess">/sys/paper/subjects.jsp</result>
+			<result name="addUI">/sys/paper/add.jsp</result>
+			<result name="savePaperSuccess" type="redirectAction">paper_list.action</result>
 		</action>
 		
 		<action name="studentPaper_*" class="studentPaperAction" method="{1}">

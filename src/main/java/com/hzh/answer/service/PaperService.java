@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 
-import com.hzh.answer.domain.PageBean;
 import com.hzh.answer.domain.Paper;
 import com.hzh.answer.domain.Subject;
+import com.hzh.answer.domain.util.PageBean;
 
 public interface PaperService {
 
@@ -18,4 +18,6 @@ public interface PaperService {
 
 	PageBean<Subject> findAllSubjectWithPage(DetachedCriteria detachedCriteria, Integer pid, Integer currPage,
 			Integer pageSize);
+
+	Integer savePaper(Paper paper);
 }

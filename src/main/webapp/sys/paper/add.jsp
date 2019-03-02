@@ -23,10 +23,10 @@
 		</script>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form method="post" action="<%=basePath%>sys/paper?cmd=add">
+				<form method="post" action="${pageContext.request.contextPath}/paper_savePaper.action">
 					<div class="btn-toolbar">
 						<input type="submit" class="btn btn-primary" value="保存 ">
-						<a href="<%=basePath%>sys/paper?cmd=list" class="btn">取消</a>
+						<a href="${pageContext.request.contextPath}/paper_list.action" class="btn">取消</a>
 
 					</div>
 

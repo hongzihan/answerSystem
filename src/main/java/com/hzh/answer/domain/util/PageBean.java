@@ -1,4 +1,4 @@
-package com.hzh.answer.domain;
+package com.hzh.answer.domain.util;
 
 import java.util.List;
 

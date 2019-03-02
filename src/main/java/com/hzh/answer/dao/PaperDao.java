@@ -9,4 +9,6 @@ import com.hzh.answer.domain.Subject;
 public interface PaperDao extends BaseDao<Paper> {
 
 	List<Subject> findByPname(String pname);
+
+	Paper findOneByPname(String pname);
 }

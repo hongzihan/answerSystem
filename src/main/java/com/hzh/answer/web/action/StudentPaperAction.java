@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 
-import com.hzh.answer.domain.PageBean;
 import com.hzh.answer.domain.StudentPaper;
 import com.hzh.answer.domain.Subject;
+import com.hzh.answer.domain.util.PageBean;
 import com.hzh.answer.domain.util.StudentErrorSubject;
 import com.hzh.answer.service.StudentPaperService;
 import com.opensymphony.xwork2.ActionContext;

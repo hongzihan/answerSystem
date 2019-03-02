@@ -2,8 +2,8 @@ package com.hzh.answer.service;
 
 import java.util.List;
 
-import com.hzh.answer.domain.PageBean;
 import com.hzh.answer.domain.StudentPaper;
+import com.hzh.answer.domain.util.PageBean;
 import com.hzh.answer.domain.util.StudentErrorSubject;
 
 public interface StudentPaperService {

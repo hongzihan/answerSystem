@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hzh.answer.dao.StudentPaperDao;
-import com.hzh.answer.domain.PageBean;
 import com.hzh.answer.domain.StudentPaper;
 import com.hzh.answer.domain.Subject;
+import com.hzh.answer.domain.util.PageBean;
 import com.hzh.answer.domain.util.StudentErrorSubject;
 import com.hzh.answer.service.StudentPaperService;
 
