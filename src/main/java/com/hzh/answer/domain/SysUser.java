@@ -17,11 +17,21 @@ public class SysUser {
 	
 	private String rolename;
 	
+	private Integer user_role_id; // 外键，方便存储
+	
 	/**
 	 * 与角色的多对一关系
 	 */
 	private SysRole sysRole;
 	
+	public Integer getUser_role_id() {
+		return user_role_id;
+	}
+
+	public void setUser_role_id(Integer user_role_id) {
+		this.user_role_id = user_role_id;
+	}
+
 	public SysRole getSysRole() {
 		return sysRole;
 	}

@@ -25,10 +25,10 @@
 
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form method="post" action="<%=basePath%>sys/user?cmd=edit">
+				<form method="post" action="${pageContext.request.contextPath}/user_updateUser.action">
 					<div class="btn-toolbar">
 						<input type="submit" class="btn btn-primary" value="保存 ">
-						<a href="<%=basePath%>sys/user?cmd=list" class="btn">取消</a>
+						<a href="${pageContext.request.contextPath}/user_list.action" class="btn">取消</a>
 
 					</div>
 
@@ -37,14 +37,14 @@
 							<label>
 								用户名：
 							</label>
-							<input type="hidden" name="userid" value="${item.userid}" />
+							<input type="hidden" name="userid" value="${userid}" />
 							
-							<input type="text" name="username" value="${item.username}"
+							<input type="text" name="username" value="${username}"
 								readonly="readonly">
 							<label>
 								角色类型：
 							</label>
-							<select name="roleid">
+							<select name="user_role_id">
 								<option value="1">
 									学生
 								</option>
@@ -59,18 +59,18 @@
 								用户密码：
 							</label>
 							<input type="text" name="userpwd" maxlength="10"
-								value="${item.userpwd}">
+								value="${userpwd}">
 							<label>
 								用户真实名字：
 							</label>
-							<input type="text" name="usertruename" value="${item.usertruename}"
+							<input type="text" name="usertruename" value="${usertruename}"
 								maxlength="100">
 							<label>
 								用户状态：
 							</label>
 							<select name="userstate">
 								<c:choose>
-									<c:when test="${item.userstate==\"1\"}">
+									<c:when test="${userstate==\"1\"}">
 									<option value="1" selected="selected">正常</option>
 									<option value="0">锁定</option>		
 									</c:when>

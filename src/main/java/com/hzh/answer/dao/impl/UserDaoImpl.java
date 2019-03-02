@@ -27,5 +27,14 @@ public class UserDaoImpl extends BaseDaoImpl<SysUser> implements UserDao {
 		return null;
 	}
 
+	@Override
+	public SysUser findByUsername(String username) {
+		List<SysUser> list = (List<SysUser>) this.getHibernateTemplate().find("from SysUser where username=?", username);
+		if(!list.isEmpty()) {
+			return (SysUser)list.get(0);
+		}
+		return null;
+	}
+
 
 }

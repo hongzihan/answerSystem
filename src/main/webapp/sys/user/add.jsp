@@ -23,10 +23,10 @@
 		</script>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form method="post" action="<%=basePath%>sys/user?cmd=add">
+				<form method="post" action="${pageContext.request.contextPath}/user_addUser.action">
 					<div class="btn-toolbar">
 						<input type="submit" class="btn btn-primary" value="保存 ">
-						<a href="<%=basePath%>sys/user?cmd=list" class="btn">取消</a>
+						<a href="${pageContext.request.contextPath}/user_list.action" class="btn">取消</a>
 
 					</div>
 
@@ -35,7 +35,7 @@
 							<label>
 								用户角色：
 							</label>
-							<select name="roleid">
+							<select name="user_role_id">
 								<option value="1">
 									学生
 								</option>

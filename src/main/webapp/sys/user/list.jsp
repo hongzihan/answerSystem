@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -17,35 +18,41 @@
 		<link rel="stylesheet" type="text/css" href="<%=basePath%>css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="<%=basePath%>css/theme.css">
 		<script src="<%=basePath%>js/jquery.js" type="text/javascript"></script>
+		<SCRIPT language=javascript>
+			function to_page(page){
+				if(page){
+					$("#page").val(page);
+				}
+				document.userForm.submit();
+				
+			}
+		</SCRIPT>
 	</head>
 
 	<body class="content1">
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form class="form-inline" method="post"
-					action="<%=basePath%>sys/user?cmd=list">
-					<input class="input-xlarge" placeholder="用户名..." name="sname"
-						type="text" value="${param.sname}">
+				<form class="form-inline" method="post" id="userForm" name="userForm"
+					action="${pageContext.request.contextPath}/user_list.action">
+					<input class="input-xlarge" placeholder="用户名..." name="username"
+						type="text" value="${username}">
 					<input class="btn icon-search" type="submit" value="查询" />
 					<a class="btn btn-primary"
-						href="<%=basePath%>sys/user/add.jsp"> <i
+						href="${pageContext.request.contextPath}/user_add.action"> <i
 						class="icon-plus"></i> 新增 </a>
-				</form>
+				
 
 				<div class="well">
 					<table class="table">
 						<thead>
 							<tr>
 								<th>
-									角色ID
-								</th>
-								<th>
 									用户名
 								</th>
-								<!--<th>
+								<th>
 									用户密码
 								</th>
-								--><th>
+								<th>
 									用户真实名字
 								</th>
 								<th>
@@ -57,18 +64,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${pager.list}" var="item">
+							<c:forEach items="${list}" var="item">
 								<tr>
-									<td>
-										${item.roleid}
-									</td>
 									<td>
 										${item.username}
 									</td>
-									<!--<td>
+									<td>
 										${item.userpwd}
 									</td>
-									--><td>
+									<td>
 										${item.usertruename}
 									</td>
 									<td>
@@ -80,48 +84,52 @@
 										</c:choose>
 									</td>
 									<td>
-										<a href="<%=basePath%>sys/user?cmd=toedit&id=${item.userid}">编辑</a>
+										<a href="${pageContext.request.contextPath}/user_edit.action?userid=${item.userid}">编辑</a>
 									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					<div class="pagination pagination-right">
-						<ul>
-							<li>
-								<a>共计：${pager.pagectrl.pagecount}页/${pager.pagectrl.rscount}条记录</a>
-							</li>
-							
-							<li>
-								<c:if test="${pager.pagectrl.currentindex==1}" var="fp">
-									<a style="disabled:true">上一页</a>
-								</c:if>
-								<c:if test="${!fp}">
-									<a href="<%=basePath%>sys/user?cmd=list&index=${pager.pagectrl.currentindex-1}">上一页</a>
-								</c:if>
-							</li>						
-							
-							<c:forEach begin="${pager.pagectrl.minpage}" step="1" end="${pager.pagectrl.maxpage}" var="index">
-							<li>
-								<c:if test="${pager.pagectrl.currentindex==index}" var="t">
-									<a style="color:red;background-color:#bbb">${index}</a>
-								</c:if>
-								<c:if test="${!t}">
-								<a href="<%=basePath%>sys/user?cmd=list&index=${index}">${index}</a>
-								</c:if>
-							</li>
-							</c:forEach>
-							
-							<li>
-								<c:if test="${pager.pagectrl.currentindex==pager.pagectrl.pagecount}" var="fp">
-									<a style="disabled:true">下一页</a>
-								</c:if>
-								<c:if test="${!fp}">
-									<a href="<%=basePath%>sys/user?cmd=list&index=${pager.pagectrl.currentindex+1}">下一页</a>
-								</c:if>
-							</li>
-						</ul>
-					</div>
+					<table>
+						<TR>
+							<TD><SPAN id=pagelink>
+									<DIV style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
+										共[<B><s:property value="totalCount"/></B>]条记录,[<B><s:property value="totalPage"/></B>]页
+										,每页显示
+										<select name="pageSize" onchange="to_page()">
+											<option value="3" <s:if test="pageSize == 3">selected</s:if>>3</option>
+											<option value="5" <s:if test="pageSize == 5">selected</s:if>>5</option>
+											<option value="10" <s:if test="pageSize == 10">selected</s:if>>10</option>
+										</select>
+										条
+										<s:if test="currPage != 1">
+										[<A href="javascript:to_page(<s:property value="1" />)" style="disabled:true">首页</A>]
+										[<A href="javascript:to_page(<s:property value="currPage - 1" />)" style="disabled:true">前一页</A>]
+										</s:if>
+										<B>
+											<s:iterator var="i" begin="1" end="totalPage">
+												<s:if test="#i == currPage">
+													<s:property value="#i"/>
+												</s:if>
+												<s:else>
+													<a href="javascript:to_page('<s:property value="#i"/>')" style="disabled:true"><s:property value="#i"/></a> 
+												</s:else>
+											</s:iterator>
+										</B>
+										<s:if test="currPage != totalPage">
+										[<A href="javascript:to_page(<s:property value="currPage + 1" />)" style="disabled:true">后一页</A>] 
+										[<A href="javascript:to_page(<s:property value="totalPage" />)" style="disabled:true">尾页</A>]
+										</s:if>
+										到
+										<input type="text" size="3" id="page" name="currPage" />
+										页
+										
+										<input type="button" value="Go" onclick="to_page()"/>
+									</DIV>
+							</SPAN></TD>
+						</TR>
+					</table>
+					</form>
 				</div>
 			</div>
 		</div>

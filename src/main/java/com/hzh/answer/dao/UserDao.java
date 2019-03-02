@@ -9,4 +9,6 @@ import com.hzh.answer.domain.SysUser;
  */
 public interface UserDao extends BaseDao<SysUser>{
 	SysUser findOne(SysUser sysUser);
+
+	SysUser findByUsername(String username);
 }

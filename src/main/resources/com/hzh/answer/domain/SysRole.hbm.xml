@@ -11,7 +11,7 @@
         <property name="rolestate"/>
         <property name="roledesc"/>
         
-        <set name="sysUsers" lazy="false">
+        <set name="sysUsers" lazy="false" inverse="true">
         	<key column="user_role_id"/>
         	
         	<one-to-many class="com.hzh.answer.domain.SysUser"/>

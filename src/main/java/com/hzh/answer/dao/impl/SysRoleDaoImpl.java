@@ -14,5 +14,5 @@ import com.hzh.answer.domain.SysRole;
  *
  */
 public class SysRoleDaoImpl extends BaseDaoImpl<SysRole> implements SysRoleDao {
-
+	
 }

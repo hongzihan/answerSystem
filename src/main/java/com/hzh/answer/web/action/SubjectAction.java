@@ -98,6 +98,7 @@ public class SubjectAction extends ActionSupport implements ModelDriven<Subject>
 		if(editStatus.equals(1)) {
 			return "editSubjectSuccess";
 		} else {
+			System.out.println("更改题目异常");
 			return "editUI";
 		}
 	}

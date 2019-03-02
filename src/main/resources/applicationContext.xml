@@ -76,6 +76,7 @@
 	
 	<bean id="userService" class="com.hzh.answer.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"/>
+		<property name="sysRoleDao" ref="sysRoleDao"/>
 	</bean>
 	
 	<bean id="userAction" class="com.hzh.answer.web.action.UserAction" scope="prototype">
