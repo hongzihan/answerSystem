@@ -1,13 +1,16 @@
 package com.hzh.answer.web.action;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.web.bind.EscapedErrors;
 
 import com.hzh.answer.domain.Paper;
 import com.hzh.answer.domain.Subject;
+import com.hzh.answer.domain.SysFunction;
 import com.hzh.answer.domain.SysUser;
 import com.hzh.answer.service.PaperService;
 import com.hzh.answer.service.SubjectService;
@@ -52,6 +55,7 @@ public class UserAction extends ActionSupport implements ModelDriven<SysUser>{
 		} else if(loginStatus.equals(-1) && isAdmin){
 			// 管理员登录
 			SysUser existUser = userService.findOneBySimpleUser(sysUser);
+			existUser.setRolename(existUser.getSysRole().getRolename());
 			ActionContext.getContext().getSession().put("existUser",existUser);
 			return "adminLoginSuccess";
 		} else {
@@ -67,5 +71,4 @@ public class UserAction extends ActionSupport implements ModelDriven<SysUser>{
 		session.remove("existUser");
 		return "logout";
 	}
-	
 }

@@ -5,18 +5,7 @@ import java.util.Set;
 
 public class SysFunction {
 	
-	public Integer getRr() {
-		return rr;
-	}
-	public void setRr(Integer rr) {
-		this.rr = rr;
-	}
-	public String getFunpname() {
-		return funpname;
-	}
-	public void setFunpname(String funpname) {
-		this.funpname = funpname;
-	}
+	
 	/**
 	 * 系统功能ID
 	 */
@@ -48,6 +37,7 @@ public class SysFunction {
 	 * 与SysRole的多对多关系
 	 * @return
 	 */
+	
 	private Set<SysRole> sysRoles = new HashSet<SysRole>();
 	
 	public Set<SysRole> getSysRoles() {
@@ -87,6 +77,17 @@ public class SysFunction {
 		this.funstate = funstate;
 	}
 	
-	
+	public Integer getRr() {
+		return rr;
+	}
+	public void setRr(Integer rr) {
+		this.rr = rr;
+	}
+	public String getFunpname() {
+		return funpname;
+	}
+	public void setFunpname(String funpname) {
+		this.funpname = funpname;
+	}
 	
 }

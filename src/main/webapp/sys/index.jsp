@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -24,17 +25,17 @@
             <h1><img src="css/images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />后台管理中心</h1>
         </div>
         <div class="head-l">
-            <a href="javascript:void(0);" class="button button-little bg-blue"><span class="icon-user"></span> ${user.usertruename}(${user.rolename})</a> &nbsp;&nbsp;
-            <a class="button button-little bg-red" href="<%=basePath%>sys/user?cmd=logout" target="_self"><span class="icon-power-off"></span> 退出登录</a>
+            <a href="javascript:void(0);" class="button button-little bg-blue"><span class="icon-user"></span> ${existUser.usertruename} ( ${existUser.rolename} )</a> &nbsp;&nbsp;
+            <a class="button button-little bg-red" href="${pageContext.request.contextPath}/user_logout.action" target="_self"><span class="icon-power-off"></span> 退出登录</a>
         </div>
     </div>
     <div class="leftnav">
         <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
-        <c:forEach items="${list}" var="top">
+        <c:forEach items="${menuList}" var="top">
             <c:if test="${top.funpid==\"-1\"}">
                 <h2><span class="icon-briefcase"></span>${top.funname}</h2>
                 <ul id="error-menu${top.funid}" class="nav nav-list collapse" style="display:block">
-                    <c:forEach items="${list}" var="child">
+                    <c:forEach items="${menuList}" var="child">
                         <c:if test="${child.funpid==top.funid}">
                             <li>
                                 <a href="<%=basePath%>${child.funurl}" target="right"><span class="icon-caret-right"></span>${child.funname}</a>
@@ -49,7 +50,7 @@
         $(function(){
             $(".leftnav h2").click(function(){
                 $(this).next().slideToggle(200);	
-                $(this).toggleClass("on"); 
+                $(this).togg.leClass("on"); 
             })
             $(".leftnav ul li a").click(function(){
                 $("#a_leader_txt").text($(this).text());

@@ -92,7 +92,6 @@ public class StudentPaperAction extends ActionSupport implements ModelDriven<Stu
 		out.println("您本次得分" + score * 2 + "分!");
 		out.flush();
 		out.close();
-		System.out.println(ServletActionContext.getRequest().getContextPath() + "&&&");
 		return NONE;
 	}
 	
