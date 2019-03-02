@@ -24,38 +24,37 @@
 		</script>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form method="post" action="<%=basePath%>sys/fun?cmd=edit">
+				<form method="post" action="${pageContext.request.contextPath}/sysFunction_editFunction.action">
 					<div class="btn-toolbar">
 						<input type="submit" class="btn btn-primary" value="保存 ">
-						<a href="<%=basePath%>sys/fun?cmd=list" class="btn">取消</a>
+						<a href="${pageContext.request.contextPath}/sysFunction_list.action" class="btn">取消</a>
 
 					</div>
 
 					<div class="well">
 						<div class="tab-pane active in">
 							<label>
-								父功能名称：
+								父功能id：
 							</label>
-							<input type="hidden" name="funid" value="${item.funid}" />
-							<input type="hidden" name="funpid" value="${item.funpid}" />
-							<input type="text" name="funpname" value="${item.funpname}"
-								readonly="readonly">
+							<input type="hidden" name="funid" value="${funid}" />
+							<input type="hidden" name="funpid" value="${funpid}" />
+							<input type="text" name="funpname" value="${funpid}">
 							<label>
 								功能名称：
 							</label>
 							<input type="text" name="funname" maxlength="10"
-								value="${item.funname}">
+								value="${funname}">
 							<label>
 								功能地址：
 							</label>
-							<input type="text" name="funurl" value="${item.funurl}"
+							<input type="text" name="funurl" value="${funurl}"
 								maxlength="100">
 							<label>
 								功能状态：
 							</label>
 							<select name="funstate">
 								<c:choose>
-									<c:when test="${item.funstate==\"1\"}">
+									<c:when test="${funstate==\"1\"}">
 									<option value="1" selected="selected">正常</option>
 									<option value="0">锁定</option>		
 									</c:when>

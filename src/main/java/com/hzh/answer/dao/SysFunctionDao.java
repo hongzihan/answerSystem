@@ -9,4 +9,6 @@ import com.hzh.answer.domain.SysFunction;
  */
 public interface SysFunctionDao extends BaseDao<SysFunction> {
 
+	SysFunction findByFunname(String funname);
+
 }

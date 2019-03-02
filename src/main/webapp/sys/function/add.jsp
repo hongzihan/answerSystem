@@ -25,30 +25,30 @@
 
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form method="post" action="<%=basePath%>sys/fun?cmd=add">
+				<form method="post" action="${pageContext.request.contextPath}/sysFunction_addFunction.action">
 					<div class="btn-toolbar">
-						<input type="submit" class="btn btn-primary" value="保存 ">
-						<a href="<%=basePath%>sys/fun?cmd=list" class="btn">取消</a>
+						<input type="submit" class="btn btn-primary" value="保存">
+						<a href="${pageContext.request.contextPath}/sysFunction_list.action" class="btn">取消</a>
 
 					</div>
 
 					<div class="well">
 						<div class="tab-pane active in">
 							<label>
-								父功能名称：
+								父功能id：
 							</label>
-							<c:choose>
-								<c:when test="${empty param.pid}">
+							<%-- <c:choose>
+								<c:when test="${empty funpid}">
 									<input type="hidden" name="funpid" value="${funpid}" />
-									<input type="text" name="funpname" value="${funpname}"
+									<input type="text" name="funpid" value="${funpid}"
 								readonly="readonly">			
 								</c:when>
 								<c:otherwise>
-									<input type="hidden" name="funpid" value="${param.pid}" />
-									<input type="text" name="funpname" value="${param.pname}"
+									<input type="hidden" name="funpid" value="${funpid}" />
+									<input type="text" name="funpname" value="${funpname}"
 								readonly="readonly">
 								</c:otherwise>
-							</c:choose>
+							</c:choose> --%>
 							
 							<label>
 								功能名称：

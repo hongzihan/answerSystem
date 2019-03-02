@@ -35,6 +35,12 @@
 		
 		<action name="sysFunction_*" class="sysFunctionAction" method="{1}">
 			<result name="findAllFunctionSuccess">/sys/index.jsp</result>
+			<!-- 系统管理使用 -->
+			<result name="listSuccess">/sys/function/list.jsp</result>
+			<result name="addUI">/sys/function/add.jsp</result>
+			<result name="addFunctionSuccess" type="redirectAction">sysFunction_list.action</result>
+			<result name="editUI">/sys/function/edit.jsp</result>
+			<result name="editFunctionSuccess" type="redirectAction">sysFunction_list.action</result>
 		</action>
 		
 		<action name="sysRole_*" class="sysRoleAction" method="{1}">

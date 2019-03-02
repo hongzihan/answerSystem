@@ -1,9 +1,7 @@
 package com.hzh.answer.dao.impl;
 
-import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.criterion.DetachedCriteria;
 
 import com.hzh.answer.dao.SysFunctionDao;
 import com.hzh.answer.domain.SysFunction;
@@ -14,5 +12,14 @@ import com.hzh.answer.domain.SysFunction;
  *
  */
 public class SysFunctionDaoImpl extends BaseDaoImpl<SysFunction> implements SysFunctionDao {
+
+	@Override
+	public SysFunction findByFunname(String funname) {
+		List<SysFunction> list = (List<SysFunction>) this.getHibernateTemplate().find("from SysFunction where funname=?", funname);
+		if(list.size()>0) {
+			return list.get(0);
+		}
+		return null;
+	}
 
 }
