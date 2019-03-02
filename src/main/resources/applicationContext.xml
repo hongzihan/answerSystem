@@ -120,5 +120,31 @@
 	<bean id="studentPaperAction" class="com.hzh.answer.web.action.StudentPaperAction" scope="prototype">
 		<property name="studentPaperService" ref="studentPaperService"/>
 	</bean>
+	
+	<!-- 配置系统应用模块 -->
+	<bean id="sysFunctionDao" class="com.hzh.answer.dao.impl.SysFunctionDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="sysFunctionService" class="com.hzh.answer.service.impl.SysFunctionServiceImpl">
+		<property name="sysFunctionDao" ref="sysFunctionDao"/>
+	</bean>
+	
+	<bean id="sysFunctionAction" class="com.hzh.answer.web.action.SysFunctionAction" scope="prototype">
+		<property name="sysFunctionService" ref="sysFunctionService"/>
+	</bean>
+	
+	<!-- 配置系统角色模块 -->
+	<bean id="sysRoleDao" class="com.hzh.answer.dao.impl.SysRoleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="sysRoleService" class="com.hzh.answer.service.impl.SysRoleServiceImpl">
+		<property name="sysRoleDao" ref="sysRoleDao"/>
+	</bean>
+	
+	<bean id="sysRoleAction" class="com.hzh.answer.web.action.SysRoleAction" scope="prototype">
+		<property name="sysRoleService" ref="sysRoleService"/>
+	</bean>
 </beans>
 	
