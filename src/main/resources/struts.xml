@@ -34,6 +34,11 @@
 		</action>
 		
 		<action name="subject_*" class="subjectAction" method="{1}">
+			<result name="listSuccess">/sys/subject/list.jsp</result>
+			<result name="addUI">/sys/subject/add.jsp</result>
+			<result name="editUI">/sys/subject/edit.jsp</result>
+			<result name="addSubjectSuccess" type="redirectAction">subject_list.action</result>
+			<result name="editSubjectSuccess" type="redirectAction">subject_list.action</result>
 		</action>
     </package>
 </struts>

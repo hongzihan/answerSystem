@@ -24,11 +24,10 @@
 		</script>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form method="post" action="<%=basePath%>sys/subject?cmd=edit">
+				<form method="post" action="${pageContext.request.contextPath}/subject_updateSubject.action">
 					<div class="btn-toolbar">
 						<input type="submit" class="btn btn-primary" value="保存 ">
-						<a href="<%=basePath%>sys/subject?cmd=list" class="btn">取消</a>
-
+						<a href="${pageContext.request.contextPath}/subject_list.action" class="btn">取消</a>
 					</div>
 
 					<div class="well">
@@ -36,40 +35,40 @@
 							<label>
 								题干：
 							</label>
-							<input type="hidden" name="sid" value="${item.sid}" />
-							<input type="text" name="scontent" value="${item.scontent}"
+							<input type="hidden" name="sid" value="${sid}" />
+							<input type="text" name="scontent" value="${scontent}"
 							maxlength="100"/>
 							<label>
 								A选项内容：
 							</label>
 							<input type="text" name="sa" maxlength="100"
-								value="${item.sa}">
+								value="${sa}">
 							<label>
 								B选项内容：
 							</label>
 							<input type="text" name="sb" maxlength="100"
-								value="${item.sb}">
+								value="${sb}">
 							<label>
 								C选项内容：
 							</label>
 							<input type="text" name="sc" maxlength="100"
-								value="${item.sc}">
+								value="${sc}">
 							<label>
 								D选项内容：
 							</label>
 							<input type="text" name="sd" maxlength="100"
-								value="${item.sd}">
+								value="${sd}">
 							<label>
 								标准答案选项：
 							</label>
 							<input type="text" name="skey" maxlength="100"
-								value="${item.skey}">
+								value="${skey}">
 							<label>
 								试题状态：
 							</label>
 							<select name="sstate">
 								<c:choose>
-									<c:when test="${item.sstate==\"1\"}">
+									<c:when test="${sstate==\"1\"}">
 									<option value="1" selected="selected">正常</option>
 									<option value="0">锁定</option>		
 									</c:when>

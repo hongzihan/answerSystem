@@ -87,10 +87,8 @@ public class PaperServiceImpl implements PaperService {
 		Integer saveStatus = 0;
 		Paper existPaper = paperDao.findOneByPname(paper.getPname());
 		if(existPaper != null) {
-			System.out.println("我错了");
 			saveStatus = -1; 
 		} else {
-			System.out.println("我在");
 			try {
 				paperDao.save(paper);
 				saveStatus = 1;

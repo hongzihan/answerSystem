@@ -24,11 +24,10 @@
 		</script>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form method="post" action="<%=basePath%>sys/subject?cmd=add">
+				<form method="post" action="${pageContext.request.contextPath}/subject_addSubject.action">
 					<div class="btn-toolbar">
 						<input type="submit" class="btn btn-primary" value="保存 ">
-						<a href="<%=basePath%>sys/subject?cmd=list" class="btn">取消</a>
-
+						<a href="${pageContext.request.contextPath}/subject_list.action" class="btn">取消</a>
 					</div>
 
 					<div class="well">
