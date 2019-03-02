@@ -3,7 +3,15 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-    <package name="default" namespace="/" extends="struts-default">    	   	
+    <package name="default" namespace="/" extends="struts-default">    	
+    	<interceptors>
+			<interceptor name="privilegeInterceptor" class="com.hzh.answer.web.interceptor.PrivilegeInterceptor"/>
+		</interceptors>
+		
+		<global-results>
+			<result name="login">/public/login.jsp</result>
+		</global-results>
+       	
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="success">/user/index.jsp</result>
 			<result name="normalLoginSuccess" type="redirectAction">/paper_findAllPaper.action</result>
@@ -16,6 +24,10 @@
 			<result name="editUI">/sys/user/edit.jsp</result>
 			<result name="addUserSuccess" type="redirectAction">user_list.action</result>
 			<result name="editUserSuccess" type="redirectAction">user_list.action</result>
+			<interceptor-ref name="privilegeInterceptor">
+				<param name="excludeMethods">login</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"/>
 		</action>
 		
 		<action name="paper_*" class="paperAction" method="{1}">
@@ -26,11 +38,15 @@
 			<result name="viewPaperSuccess">/sys/paper/subjects.jsp</result>
 			<result name="addUI">/sys/paper/add.jsp</result>
 			<result name="savePaperSuccess" type="redirectAction">paper_list.action</result>
+			<interceptor-ref name="privilegeInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
 		</action>
 		
 		<action name="studentPaper_*" class="studentPaperAction" method="{1}">
 			<result name="errorSubjectPageUI">/user/paper/studenterror.jsp</result>
 			<result name="allErrorSubjectPageUI">/user/paper/studentallerror.jsp</result>
+			<interceptor-ref name="privilegeInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
 		</action>
 		
 		<action name="sysFunction_*" class="sysFunctionAction" method="{1}">
@@ -41,6 +57,8 @@
 			<result name="addFunctionSuccess" type="redirectAction">sysFunction_list.action</result>
 			<result name="editUI">/sys/function/edit.jsp</result>
 			<result name="editFunctionSuccess" type="redirectAction">sysFunction_list.action</result>
+			<interceptor-ref name="privilegeInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
 		</action>
 		
 		<action name="sysRole_*" class="sysRoleAction" method="{1}">
@@ -52,6 +70,8 @@
 			<result name="editSysRoleSuccess" type="redirectAction">sysRole_list.action</result>
 			<result name="rightUI">/sys/role/right.jsp</result>
 			<result name="saveRightSuccess" type="redirectAction">sysRole_list.action</result>
+			<interceptor-ref name="privilegeInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
 		</action>
 		
 		<action name="subject_*" class="subjectAction" method="{1}">
@@ -61,6 +81,8 @@
 			<result name="editUI">/sys/subject/edit.jsp</result>
 			<result name="addSubjectSuccess" type="redirectAction">subject_list.action</result>
 			<result name="editSubjectSuccess" type="redirectAction">subject_list.action</result>
+			<interceptor-ref name="privilegeInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
 		</action>
     </package>
 </struts>
