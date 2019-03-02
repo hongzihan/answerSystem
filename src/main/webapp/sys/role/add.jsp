@@ -23,10 +23,10 @@
 		</script>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form method="post" action="<%=basePath%>sys/role?cmd=add">
+				<form method="post" action="${pageContext.request.contextPath}/sysRole_addSysRole.action">
 					<div class="btn-toolbar">
 						<input type="submit" class="btn btn-primary" value="保存 ">
-						<a href="<%=basePath%>sys/role?cmd=list" class="btn">取消</a>
+						<a href="${pageContext.request.contextPath}/sysRole_list.action" class="btn">取消</a>
 
 					</div>
 

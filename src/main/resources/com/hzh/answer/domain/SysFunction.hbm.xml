@@ -12,7 +12,7 @@
         <property name="funpid"/>
         <property name="funstate"/>
         
-        <set name="sysRoles" table="roleright">
+        <set name="sysRoles" table="roleright" cascade="save-update">
         	<key column="funid"/>
         	
         	<many-to-many class="com.hzh.answer.domain.SysRole" column="roleid"/>

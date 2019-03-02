@@ -38,6 +38,14 @@
 		</action>
 		
 		<action name="sysRole_*" class="sysRoleAction" method="{1}">
+			<!-- 系统管理使用 -->
+			<result name="listSuccess">/sys/role/list.jsp</result>
+			<result name="addUI">/sys/role/add.jsp</result>
+			<result name="addSysRoleSuccess" type="redirectAction">sysRole_list.action</result>
+			<result name="editUI">/sys/role/edit.jsp</result>
+			<result name="editSysRoleSuccess" type="redirectAction">sysRole_list.action</result>
+			<result name="rightUI">/sys/role/right.jsp</result>
+			<result name="saveRightSuccess" type="redirectAction">sysRole_list.action</result>
 		</action>
 		
 		<action name="subject_*" class="subjectAction" method="{1}">

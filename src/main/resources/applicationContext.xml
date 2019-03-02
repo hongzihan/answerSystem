@@ -142,6 +142,7 @@
 	
 	<bean id="sysRoleService" class="com.hzh.answer.service.impl.SysRoleServiceImpl">
 		<property name="sysRoleDao" ref="sysRoleDao"/>
+		<property name="sysFunctionDao" ref="sysFunctionDao"/>
 	</bean>
 	
 	<bean id="sysRoleAction" class="com.hzh.answer.web.action.SysRoleAction" scope="prototype">

@@ -14,5 +14,17 @@ import com.hzh.answer.domain.SysRole;
  *
  */
 public class SysRoleDaoImpl extends BaseDaoImpl<SysRole> implements SysRoleDao {
+
+	/**
+	 * 根据角色名查找
+	 */
+	@Override
+	public SysRole findByRolename(String rolename) {
+		List<SysRole> list = (List<SysRole>) this.getHibernateTemplate().find("from SysRole where rolename=?", rolename);
+		if(list.size()>0) {
+			return list.get(0);
+		}
+		return null;
+	}
 	
 }

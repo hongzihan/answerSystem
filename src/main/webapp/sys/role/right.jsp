@@ -62,11 +62,11 @@
 
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form method="post" action="<%=basePath%>sys/role?cmd=saveright">
+				<form method="post" action="${pageContext.request.contextPath}/sysRole_saveRight.action">
 					<div class="btn-toolbar">
 						<input type="submit" class="btn btn-primary" value="保存 ">
-						<a href="<%=basePath%>sys/role?cmd=list" class="btn">取消</a>
-						<input type="hidden" name="roleid" value="${role.roleid}"/>
+						<a href="${pageContext.request.contextPath}/sysRole_list.action" class="btn">取消</a>
+						<input type="hidden" name="roleid" value="${roleid}"/>
 						<div class="btn-group">
 						</div>
 					</div>

@@ -25,28 +25,28 @@
 
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form method="post" action="<%=basePath%>sys/role?cmd=edit">
+				<form method="post" action="${pageContext.request.contextPath}/sysRole_editSysRole.action">
 					<div class="btn-toolbar">
 						<input type="submit" class="btn btn-primary" value="保存 ">
-						<a href="<%=basePath%>sys/role?cmd=list" class="btn">取消</a>
+						<a href="${pageContext.request.contextPath}/sysRole_list.action" class="btn">取消</a>
 
 					</div>
 
 					<div class="well">
 						<div class="tab-pane active in">
-							<input type="hidden" name="roleid" value="${item.roleid}"/>
+							<input type="hidden" name="roleid" value="${roleid}"/>
 							<label>
 								角色名称：
 							</label>
 							<input type="text" name="rolename" maxlength="10"
-								value="${item.rolename}">
+								value="${rolename}">
 							<label>
 							
 								角色状态：
 							</label>
 							<select name="rolestate">
 								<c:choose>
-									<c:when test="${item.rolestate==\"1\"}">
+									<c:when test="${rolestate==\"1\"}">
 									<option value="1" selected="selected">正常</option>
 									<option value="0">锁定</option>		
 									</c:when>
@@ -61,7 +61,7 @@
 								角色介绍：
 							</label>
 								<input type="text" name="roledesc" maxlength="100"
-								value="${item.roledesc}">
+								value="${roledesc}">
 							<div style="color: red">
 								${msg}
 							</div>

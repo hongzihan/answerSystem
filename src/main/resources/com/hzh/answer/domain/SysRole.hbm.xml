@@ -17,7 +17,7 @@
         	<one-to-many class="com.hzh.answer.domain.SysUser"/>
         </set>
         
-        <set name="sysFunctions" table="roleright" inverse="true" lazy="false">
+        <set name="sysFunctions" table="roleright" inverse="true" lazy="false" cascade="save-update">
         	<key column="roleid"/>
         	
         	<many-to-many class="com.hzh.answer.domain.SysFunction" column="funid"/>

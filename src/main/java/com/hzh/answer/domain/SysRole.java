@@ -75,4 +75,11 @@ public class SysRole {
 	public void setRoledesc(String roledesc) {
 		this.roledesc = roledesc;
 	}
+	@Override
+	public String toString() {
+		return "SysRole [roleid=" + roleid + ", rolename=" + rolename + ", rolestate=" + rolestate + ", roledesc="
+				+ roledesc + "]";
+	}
+	
+	
 }

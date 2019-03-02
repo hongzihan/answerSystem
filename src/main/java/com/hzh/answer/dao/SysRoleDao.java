@@ -9,4 +9,6 @@ import com.hzh.answer.domain.SysRole;
  */
 public interface SysRoleDao extends BaseDao<SysRole> {
 
+	SysRole findByRolename(String rolename);
+
 }
