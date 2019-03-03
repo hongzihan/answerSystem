@@ -38,6 +38,7 @@
                                 <p id="mes" style="color: red;">${msg}</p>
                             </div>
                         </div>
+                        <s:actionerror/>
                         <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
                             <div class="form-group">
                                 <div class="field field-icon-right">

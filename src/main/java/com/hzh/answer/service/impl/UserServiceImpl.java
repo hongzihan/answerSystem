@@ -40,25 +40,30 @@ public class UserServiceImpl implements UserService {
 	 * -1 超级管理员登录
 	 * 0 失败
 	 * 1 普通学生登录
+	 * 2 账号密码错误
 	 */
 	public Integer login(SysUser user) {
 		Integer loginStatus = 0;
-		SysUser existUser = userDao.findOne(user);
-		if(existUser.getSysRole().getRoleid().equals(1)) {
-			if(existUser.getUsername().equals(user.getUsername()) && existUser.getUserpwd().equals(user.getUserpwd())) {
-				loginStatus = 1;
+		try {
+			SysUser existUser = userDao.findOne(user);
+			if(existUser!=null) {
+				if(existUser.getSysRole().getRoleid().equals(1)) {
+					loginStatus = 1;
+				} else if(existUser.getSysRole().getRoleid().equals(-1)) {
+					loginStatus = -1;
+				} else {
+					loginStatus = 2;
+				}
 			} else {
-				loginStatus = 0;
+				// 如果没有异常就是账号密码错误
+				loginStatus = 2;
 			}
-		} else if(existUser.getSysRole().getRoleid().equals(-1)) {
-			if(existUser.getUsername().equals(user.getUsername()) && existUser.getUserpwd().equals(user.getUserpwd())) {
-				loginStatus = -1;
-			} else {
-				loginStatus = 0;
-			}
-		} else {
-			loginStatus = 0;
+		} catch (Exception e) {
+			// 出现异常，直接返回loginStatus表示系统级异常
+			e.printStackTrace();
+			return loginStatus;
 		}
+		
 		
 		return loginStatus;
 	}

@@ -67,8 +67,8 @@ public class UserAction extends ActionSupport implements ModelDriven<SysUser>{
 	 */
 	public String login() {
 		Integer loginStatus = userService.login(sysUser);
-		if(loginStatus.equals(1) && !isAdmin) {
-			// 普通学生登录
+		if((loginStatus.equals(1) || loginStatus.equals(-1)) && !isAdmin) {
+			// 普通学生和管理员登录
 			// 这里需要将查询到的user存入session
 			SysUser existUser = userService.findOneBySimpleUser(sysUser);
 			ActionContext.getContext().getSession().put("existUser",existUser);
@@ -80,6 +80,15 @@ public class UserAction extends ActionSupport implements ModelDriven<SysUser>{
 			ActionContext.getContext().getSession().put("existUser",existUser);
 			return "adminLoginSuccess";
 		} else {
+			if(loginStatus.equals(1) && isAdmin) {
+				this.addActionError("只有管理员可以登录管理系统");
+			}
+			if(loginStatus.equals(2)) {
+				this.addActionError("账号或密码错误");
+			}
+			if(loginStatus.equals(0)) {
+				this.addActionError("系统异常");
+			}
 			return LOGIN;
 		}
 	}
