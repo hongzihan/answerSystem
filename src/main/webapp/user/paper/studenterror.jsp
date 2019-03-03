@@ -35,7 +35,6 @@
 </head>
 
 <body>
-<s:debug></s:debug>
 
 <div class="container">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
