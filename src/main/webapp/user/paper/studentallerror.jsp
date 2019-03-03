@@ -89,6 +89,7 @@
                             <a data-toggle="collapse" data-parent="#accordion" href="#Radio">错题库</a>
                         </h4>
                     </div>
+                    <s:if test="list.size>0">
                     <div id="Radio" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ol>
@@ -145,6 +146,10 @@
 										</SPAN></TD>
 									</TR>
 								</table>
+								</s:if>
+								<s:else>
+									<h1>您暂时还没有错题哦</h1>
+								</s:else>
                             </div>
                         </div>
                     </div>
