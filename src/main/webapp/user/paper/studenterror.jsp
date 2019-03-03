@@ -76,6 +76,7 @@
 		<h3>错题库 <span class="badge badge-secondary">Error Subject</span></h3>
 		<!-- 数据展示部分 -->
 		  <!-- 主数据 -->
+		  <s:if test="list.size>0">
 		  	<s:iterator value="list">
 		  		<div class="subject" data-sid="<s:property value="sid"/>" data-key="<s:property value="skey"/>" data-skey="<s:property value="studentkey"/>">
                     <li> <s:property value="scontent"/></li>
@@ -136,6 +137,10 @@
 				</tr>
 			  </tbody>
 			</table>
+			</s:if>
+			<s:else>
+				<h3>您太棒了，一题也没做错呢！</h3>
+			</s:else>
 		</div>
 	</div>
 
