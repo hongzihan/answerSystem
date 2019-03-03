@@ -29,6 +29,16 @@ public class SubjectAction extends ActionSupport implements ModelDriven<Subject>
 	// 分页参数
 	private Integer currPage = 1;
 	private Integer pageSize = 3;
+	// 目标试卷名
+	private String pname;
+	
+	public String getPname() {
+		return pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
 
 	public void setCurrPage(Integer currPage) {
 		if (currPage == null) {
@@ -71,7 +81,7 @@ public class SubjectAction extends ActionSupport implements ModelDriven<Subject>
 	 * 新增题目
 	 */
 	public String addSubject() {
-		Integer saveStatus = subjectService.saveSubject(subject);
+		Integer saveStatus = subjectService.saveSubject(subject,pname);
 		if(saveStatus.equals(1)) {
 			return "addSubjectSuccess";
 		} else {

@@ -35,7 +35,7 @@
 							<label>
 								试卷名称：
 							</label>
-							<input type="text" name="pname" maxlength="10">
+							<input type="text" name="pname" maxlength="20">
 							<label>
 								试题数量：
 							</label>

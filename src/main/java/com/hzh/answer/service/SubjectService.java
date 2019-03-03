@@ -9,7 +9,7 @@ public interface SubjectService {
 
 	PageBean<Subject> findAllByPage(DetachedCriteria detachedCriteria, Integer currPage, Integer pageSize);
 
-	Integer saveSubject(Subject subject);
+	Integer saveSubject(Subject subject,String pname);
 
 	Subject findOneBySid(Integer sid);
 

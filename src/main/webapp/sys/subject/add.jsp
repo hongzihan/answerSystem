@@ -58,6 +58,10 @@
 							</label>
 							<input type="text" name="skey" maxlength="10">
 							<label>
+								目标试卷:
+							</label>
+							<input type="text" name="pname" maxlength="20">
+							<label>
 								试题状态：
 							</label>
 							<select name="sstate">

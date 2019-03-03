@@ -103,6 +103,7 @@
 	
 	<bean id="subjectService" class="com.hzh.answer.service.impl.SubjectServiceImpl">
 		<property name="subjectDao" ref="subjectDao"/>
+		<property name="paperDao" ref="paperDao"/>
 	</bean>
 	
 	<bean id="subjectAction" class="com.hzh.answer.web.action.SubjectAction" scope="prototype">

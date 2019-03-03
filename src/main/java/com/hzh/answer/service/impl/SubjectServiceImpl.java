@@ -15,6 +15,11 @@ import com.hzh.answer.service.SubjectService;
 @Transactional
 public class SubjectServiceImpl implements SubjectService{
 	private SubjectDao subjectDao;
+	private PaperDao paperDao;
+
+	public void setPaperDao(PaperDao paperDao) {
+		this.paperDao = paperDao;
+	}
 
 	public void setSubjectDao(SubjectDao subjectDao) {
 		this.subjectDao = subjectDao;
@@ -47,13 +52,15 @@ public class SubjectServiceImpl implements SubjectService{
 	 * 1表示成功
 	 */
 	@Override
-	public Integer saveSubject(Subject subject) {
+	public Integer saveSubject(Subject subject, String pname) {
 		Integer saveStatus = 0;
 		Subject existSubject = subjectDao.findOneByScontent(subject.getScontent());
+		Paper paper = paperDao.findPaperByPname(pname);
 		if(existSubject != null) {
 			saveStatus = -1; 
 		} else {
 			try {
+				subject.getPapers().add(paper);
 				subjectDao.save(subject);
 				saveStatus = 1;
 			} catch (Exception e) {
