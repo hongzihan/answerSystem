@@ -52,14 +52,14 @@
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="${pageContext.request.contextPath}/paper_findAllPaper.action">试题列表</a></li>
-                	<li class="active"><a href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=<s:property value="userid"/>">查看错题</a></li>
+                	<li class="active"><a href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=${existUser.userid}">查看错题</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${existUser.userid!=null}">
 							<li>
 								<a>
-									<s:property value="#session.existUser.usertruename"/>
+									${existUser.usertruename}
 								</a>
 							</li>
 							<li>
@@ -128,7 +128,7 @@
 										</td>
 	
 										<td>
-											<a href="${pageContext.request.contextPath}/paper_searchPaper.action?pid=<s:property value="pid"/>">开始答题</a>
+											<a href="${pageContext.request.contextPath}/paper_searchPaper.action?pid=<s:property value="pid"/>&pname=${pname}">开始答题</a>
 										</td>
 									</tr>
 								</s:iterator>

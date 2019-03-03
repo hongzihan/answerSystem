@@ -34,7 +34,7 @@
 <s:debug></s:debug>
 <s:property value="list.size"/>
 	<form id="paperForm" name="errorPaperForm"
-		action="${pageContext.request.contextPath }/studentPaper_errorSubjectPage.action?userid=<s:property value="userid"/>&spid=<s:property value="spid"/>"
+		action="${pageContext.request.contextPath }/studentPaper_errorSubjectPage.action?userid=${existUser.userid}&spid=<s:property value="spid"/>"
 		method=post>
     <nav class="navbar navbar-default" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -51,15 +51,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="${pageContext.request.contextPath}/paper_findAllPaper.action">试题列表</a></li>
-                <li class="active"><a href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=<s:property value="userid"/>">查看错题</a></li>
+               <li><a href="${pageContext.request.contextPath}/paper_findAllPaper.action">试题列表</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=${existUser.userid}">查看错题</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${existUser.userid!=null}">
 							<li>
 								<a>
-									<s:property value="#session.existUser.usertruename"/>
+									${existUser.usertruename}
 								</a>
 							</li>
 							<li>

@@ -23,7 +23,7 @@
 </head>
 
 <body>
-	<input type="hidden" value="<s:property value="#session.existUser.userid"/>" name="userid" id="userid">
+	<input type="hidden" value="${existUser.userid}" name="userid" id="userid">
 	<s:debug></s:debug>
 	<nav class="navbar navbar-default" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -41,14 +41,14 @@
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/paper_findAllPaper.action">试题列表</a></li>
-				<li><a href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=<s:property value="userid"/>">查看错题</a></li>
+                	<li class="active"><a href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=${existUser.userid}">查看错题</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${existUser.userid!=null}">
 							<li>
 								<a>
-									<s:property value="#session.existUser.usertruename"/>
+									${existUser.usertruename}
 								</a>
 							</li>
 							<li>
