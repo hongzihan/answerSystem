@@ -209,7 +209,7 @@
 				var datas = $.param(data)
 				console.log(datas)
 				$.post({
-					url: basePath+'/studentPaper_answer?'+ datas,
+					url: basePath+'/studentPaper_answer.action?'+ datas,
 					contentType: false,
 					processData: false,
 					success:function(){

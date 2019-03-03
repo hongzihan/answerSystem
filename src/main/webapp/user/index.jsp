@@ -128,7 +128,7 @@
 										</td>
 	
 										<td>
-											<a href="${pageContext.request.contextPath}/paper_searchPaper?pid=<s:property value="pid"/>">开始答题</a>
+											<a href="${pageContext.request.contextPath}/paper_searchPaper.action?pid=<s:property value="pid"/>">开始答题</a>
 										</td>
 									</tr>
 								</s:iterator>
