@@ -1,5 +1,8 @@
 package com.hzh.answer.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 一个用于记录题目回答情况的数据表
  * @author ken
@@ -17,7 +20,16 @@ public class StudentPaper {
 	private Integer rightcount;
 	private Integer errorcount;
 	
+	private Set<Paper> papers = new HashSet<Paper>();
 	
+	
+	
+	public Set<Paper> getPapers() {
+		return papers;
+	}
+	public void setPapers(Set<Paper> papers) {
+		this.papers = papers;
+	}
 	public Integer getStupid() {
 		return stupid;
 	}

@@ -17,6 +17,7 @@ import com.hzh.answer.domain.StudentPaper;
 import com.hzh.answer.domain.Subject;
 import com.hzh.answer.domain.util.PageBean;
 import com.hzh.answer.domain.util.StudentErrorSubject;
+import com.hzh.answer.domain.util.StudentPaperDetail;
 import com.hzh.answer.service.StudentPaperService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -65,9 +66,7 @@ public class StudentPaperAction extends ActionSupport implements ModelDriven<Stu
 	 * 处理交卷的信息
 	 */
 	public void answer() {
-		StudentPaper studentPaper2 = new StudentPaper();
-		studentPaper2 = studentPaper;
-		Boolean saveSuccess = studentPaperService.save(studentPaper2);
+		Boolean saveSuccess = studentPaperService.save(studentPaper);
 		if(saveSuccess) {
 			System.out.println("保存成功");
 		} else {
@@ -116,8 +115,7 @@ public class StudentPaperAction extends ActionSupport implements ModelDriven<Stu
 	public String allErrorSubjectPage() {
 		System.out.println(currPage + "currPage" + "PageSize" + pageSize);
 		// 获取pageBean
-		PageBean<StudentErrorSubject> pageBean = studentPaperService.findAllErrorSubject(studentPaper,currPage,pageSize);
-		List<StudentErrorSubject> list = pageBean.getList();
+		PageBean<StudentPaperDetail> pageBean = studentPaperService.findAllErrorSubject(studentPaper,currPage,pageSize);
 		// 将pageBean存入值栈
 		ActionContext.getContext().getValueStack().push(pageBean);
 		return "allErrorSubjectPageUI";

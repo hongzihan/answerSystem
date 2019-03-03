@@ -42,4 +42,13 @@ public class PaperDaoImpl extends BaseDaoImpl<Paper> implements PaperDao {
 		return null;
 	}
 
+	@Override
+	public Paper findPaperByPname(String pname) {
+		List<Paper> list = (List<Paper>) this.getHibernateTemplate().find("from Paper where pname=?", pname);
+		if(list.size()>0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
 }

@@ -10,8 +10,16 @@ public class Paper {
 	
 	private Set<Subject> subjects = new HashSet<Subject>();
 	
+	private Set<StudentPaper> studentPapers = new HashSet<StudentPaper>();
 	
 	
+	
+	public Set<StudentPaper> getStudentPapers() {
+		return studentPapers;
+	}
+	public void setStudentPapers(Set<StudentPaper> studentPapers) {
+		this.studentPapers = studentPapers;
+	}
 	public Set<Subject> getSubjects() {
 		return subjects;
 	}

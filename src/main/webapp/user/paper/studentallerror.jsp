@@ -74,15 +74,15 @@
 								<th>
 									试题名称
 								</th>
-								<!-- <th>
+								<th>
 									错题数目
-								</th> -->
-								<!-- <th>
+								</th>
+								<th>
 									得分
-								</th> -->
-								<!-- <th>
+								</th>
+								<th>
 									做题时间
-								</th> -->
+								</th>
 								<th style="width: 90px;">
 									操作
 								</th>
@@ -94,18 +94,18 @@
 									<td>
 										${item.pname}
 									</td>
-									<%-- <td>
+									<td>
 										${item.errorcount}
-									</td> --%>
-									<%-- <td>
+									</td>
+									<td>
 										${item.rightcount*2}
-									</td> --%>
-									<%-- <td class="times" data-time = ${item.spid}>
+									</td>
+									<td class="times" data-time = ${item.spid}>
 										${item.spid}
-									</td> --%>
+									</td>
 
 									<td>
-										<a href="<%=basePath%>user/studentPaper?cmd=list">查看详情</a>
+										<a href="${pageContext.request.contextPath}/studentPaper_errorSubjectPage.action?userid=${existUser.userid}&spid=${item.spid}">查看详情</a>
 									</td>
 								</tr>
 							</c:forEach>

@@ -5,6 +5,7 @@ import java.util.List;
 import com.hzh.answer.domain.StudentPaper;
 import com.hzh.answer.domain.Subject;
 import com.hzh.answer.domain.util.StudentErrorSubject;
+import com.hzh.answer.domain.util.StudentPaperDetail;
 
 public interface StudentPaperDao extends BaseDao<StudentPaper> {
 

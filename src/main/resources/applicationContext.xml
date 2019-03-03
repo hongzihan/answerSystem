@@ -116,6 +116,7 @@
 	
 	<bean id="studentPaperService" class="com.hzh.answer.service.impl.StudentPaperServiceImpl">
 		<property name="studentPaperDao" ref="studentPaperDao"/>
+		<property name="paperDao" ref="paperDao"/>
 	</bean>
 	
 	<bean id="studentPaperAction" class="com.hzh.answer.web.action.StudentPaperAction" scope="prototype">

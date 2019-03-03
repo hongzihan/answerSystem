@@ -16,5 +16,11 @@
         	<!-- 对方的实体类和对方在中间表中对应的外键的名称 -->
         	<many-to-many class="com.hzh.answer.domain.Subject" column="subject_id"/>
         </set>
+        
+        <!-- 与StudentPaper的多对多 -->
+        <set name="studentPapers" table="temp_paper_studentPaper" lazy="false" cascade="save-update">
+        	<key column="paper_id"/>
+        	<many-to-many class="com.hzh.answer.domain.StudentPaper" column="studentPaper_id"/>
+        </set>
     </class>
 </hibernate-mapping>

@@ -5,6 +5,7 @@ import java.util.List;
 import com.hzh.answer.domain.StudentPaper;
 import com.hzh.answer.domain.util.PageBean;
 import com.hzh.answer.domain.util.StudentErrorSubject;
+import com.hzh.answer.domain.util.StudentPaperDetail;
 
 public interface StudentPaperService {
 
@@ -14,6 +15,6 @@ public interface StudentPaperService {
 
 	PageBean<StudentErrorSubject> findErrorSubject(StudentPaper studentPaper, Integer currPage, Integer pageSize);
 
-	PageBean<StudentErrorSubject> findAllErrorSubject(StudentPaper studentPaper, Integer currPage, Integer pageSize);
+	PageBean<StudentPaperDetail> findAllErrorSubject(StudentPaper studentPaper, Integer currPage, Integer pageSize);
 
 }

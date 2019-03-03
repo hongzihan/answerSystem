@@ -13,5 +13,11 @@
         <property name="studentkey"/>
         <property name="studentstate"/>
         <property name="pname"/>
+        
+        <!-- 与StudentPaper的多对多 -->
+        <set name="papers" table="temp_paper_studentPaper" lazy="false" cascade="save-update">
+        	<key column="studentPaper_id"/>
+        	<many-to-many class="com.hzh.answer.domain.Paper" column="paper_id"/>
+        </set>
     </class>
 </hibernate-mapping>
