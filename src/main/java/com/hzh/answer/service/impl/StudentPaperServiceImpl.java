@@ -122,14 +122,14 @@ public class StudentPaperServiceImpl implements StudentPaperService {
 				// 将题目信息和试卷信息整合
 				StudentPaperDetail studentPaperDetail = new StudentPaperDetail();
 				for (StudentPaper studentPaper2 : studentPaperList) {
-					if(studentPaper2.getStudentstate().equals(1)) {
-						rightCount += 1;
-					}
-					if(studentPaper2.getStudentstate().equals(0)) {
-						errorCount += 1;
-					}
-					// 设置试卷时间
 					if(studentPaper.getUserid().equals(studentPaper2.getUserid())) {
+						if(studentPaper2.getStudentstate().equals(1)) {
+							rightCount += 1;
+						}
+						if(studentPaper2.getStudentstate().equals(0)) {
+							errorCount += 1;
+						}
+						// 设置试卷时间
 						studentPaperDetail.setSpid(Long.parseLong(studentPaper2.getSpid()));
 					}
 				}
