@@ -50,17 +50,23 @@ public class SubjectServiceImpl implements SubjectService{
 	 * 新增题目的业务
 	 * 0,-1表示失败
 	 * 1表示成功
+	 * 如果存在pname，则通过级联的方式将题目对应试卷保存进入数据库
 	 */
 	@Override
 	public Integer saveSubject(Subject subject, String pname) {
 		Integer saveStatus = 0;
 		Subject existSubject = subjectDao.findOneByScontent(subject.getScontent());
-		Paper paper = paperDao.findPaperByPname(pname);
+		Paper paper = null;
+		if(pname!=null) {
+			paper = paperDao.findPaperByPname(pname);
+		}
 		if(existSubject != null) {
 			saveStatus = -1; 
 		} else {
 			try {
-				subject.getPapers().add(paper);
+				if(paper!=null) {
+					subject.getPapers().add(paper);
+				}
 				subjectDao.save(subject);
 				saveStatus = 1;
 			} catch (Exception e) {
