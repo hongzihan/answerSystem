@@ -18,7 +18,6 @@
 </head>
 
 <body>
-<s:debug></s:debug>
     <div class="bg"></div>
     <div class="container">
         <div class="line bouncein">
