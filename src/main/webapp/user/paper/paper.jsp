@@ -15,8 +15,13 @@
 <head>
 	<base href="<%=basePath%>">
 	<title>在线答题</title>
-	<link rel="stylesheet" type="text/css" href="<%=basePath%>css/bootstrap.min.css">
+	
 	<link rel="stylesheet" type="text/css" href="<%=basePath%>css/paper.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="<%=basePath%>css/bootstrap.min.css">
+	<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="<%=basePath%>js/jquery.js" type="text/javascript"></script>
 	<script src="<%=basePath%>js/bootstrap.js"></script>
 	<script src="<%=basePath%>layer/layer.js"></script>
@@ -24,89 +29,79 @@
 
 <body>
 	<input type="hidden" value="${existUser.userid}" name="userid" id="userid">
-	<s:debug></s:debug>
-	<nav class="navbar navbar-default" role="navigation">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">在线考试系统</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="${pageContext.request.contextPath}/paper_findAllPaper.action">试题列表</a></li>
-                	<li class="active"><a href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=${existUser.userid}">查看错题</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-					<c:choose>
-						<c:when test="${existUser.userid!=null}">
-							<li>
-								<a>
-									${existUser.usertruename}
-								</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/user_logout.action">注销</a>
-							</li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="${pageContext.request.contextPath}/user_login.action">登录</a></li>
-						</c:otherwise>
-					</c:choose>
+	<%-- <s:debug></s:debug> --%>
 	
-				</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</nav>
-
-	<main class="container">
-		<div class="panel panel-default">
-			<div class="panel-heading text-center">
-				<h3 class="panel-title">
-					<s:property value="pname"/>
-				</h3>
-			</div>
-			<div class="panel-body">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion" href="#Radio">单选题（共 <s:property value="totalCount"/> 题，每题2分）</a>
-						</h4>
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">在线考试系统</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+		      	<a class="nav-link" href="${pageContext.request.contextPath}/paper_findAllPaper.action">试题列表</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=${existUser.userid}">查看错题</a>
+		      </li>
+		    </ul>
+		    <ul class="navbar-nav my-2 my-lg-0">
+		    	<c:choose>
+					<c:when test="${existUser.userid!=null}">
+						<li>
+							<a class="nav-link">
+								${existUser.usertruename}
+							</a>
+						</li>
+						<li>
+							<a class="nav-link" href="${pageContext.request.contextPath}/user_logout.action">注销</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li><a class="nav-link" href="${pageContext.request.contextPath}/user_login.action">登录</a></li>
+					</c:otherwise>
+				</c:choose>
+		    </ul>
+		  </div>
+		</nav>
+		
+		<div class="container">
+			<h3>${pname}<span class="badge badge-secondary">单选题（共 <s:property value="totalCount"/> 题，每题2分）</span></h3>
+			<!-- 数据展示部分 -->
+			<form action="" method="POST" role="form">
+				<div id="Radio" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<ol>
+							<s:iterator value="list" status="status">
+								<div class="subject" data-i="${status.index}" data-answer="false" data-sid="<s:property value="sid"/>" data-key="<s:property value="skey"/>" data-state="0"
+									data-skey>
+									<li>
+										<s:property value="scontent"/>
+									</li>
+									
+									<ol>
+										<li><label><input type="radio" value="A" name="<s:property value="sid"/>"><s:property value="sa"/></label></li>
+										<li><label><input type="radio" value="B" name="<s:property value="sid"/>"><s:property value="sb"/></label></li>
+										<li><label><input type="radio" value="C" name="<s:property value="sid"/>"><s:property value="sc"/></label></li>
+										<li><label><input type="radio" value="D" name="<s:property value="sid"/>"><s:property value="sd"/></label></li>
+									</ol>
+								</div>
+							</s:iterator>
+						</ol>
+						<button class="btn btn-success" type="submit">交卷</button>
 					</div>
-					<form action="" method="POST" role="form">
-						<div id="Radio" class="panel-collapse collapse in">
-							<div class="panel-body">
-								<ol>
-									<s:iterator value="list" status="status">
-										<div class="subject" data-i="${status.index}" data-answer="false" data-sid="<s:property value="sid"/>" data-key="<s:property value="skey"/>" data-state="0"
-											data-skey>
-											<li>
-												<s:property value="scontent"/>
-											</li>
-											
-											<ol>
-												<li><label><input type="radio" value="A" name="<s:property value="sid"/>"><s:property value="sa"/></label></li>
-												<li><label><input type="radio" value="B" name="<s:property value="sid"/>"><s:property value="sb"/></label></li>
-												<li><label><input type="radio" value="C" name="<s:property value="sid"/>"><s:property value="sc"/></label></li>
-												<li><label><input type="radio" value="D" name="<s:property value="sid"/>"><s:property value="sd"/></label></li>
-											</ol>
-										</div>
-									</s:iterator>
-								</ol>
-								<button class="btn btn-success" type="submit">交卷</button>
-							</div>
-						</div>
-					</form>
 				</div>
-			</div>
+			</form>
 		</div>
-	</main>
+	</div>
+	
+	
+	
+	
+	
+	
 	<aside class="processor">
 		<section class="time" id="time">
 			00时00分00秒

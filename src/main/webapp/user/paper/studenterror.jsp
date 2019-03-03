@@ -15,8 +15,12 @@
 <head>
     <base href="<%=basePath%>">
     <title>在线答题</title>
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<%=basePath%>css/paper.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>css/bootstrap.min.css">
+	<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="<%=basePath%>js/jquery.js" type="text/javascript"></script>
     <script src="<%=basePath%>js/bootstrap.js"></script>
     <SCRIPT language=javascript>
@@ -32,7 +36,115 @@
 
 <body>
 <s:debug></s:debug>
-<s:property value="list.size"/>
+
+<div class="container">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">在线考试系统</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	      	<a class="nav-link" href="${pageContext.request.contextPath}/paper_findAllPaper.action">试题列表</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="${pageContext.request.contextPath}/studentPaper_allErrorSubjectPage.action?userid=${existUser.userid}">查看错题</a>
+	      </li>
+	    </ul>
+	    <ul class="navbar-nav my-2 my-lg-0">
+	    	<c:choose>
+				<c:when test="${existUser.userid!=null}">
+					<li>
+						<a class="nav-link">
+							${existUser.usertruename}
+						</a>
+					</li>
+					<li>
+						<a class="nav-link" href="${pageContext.request.contextPath}/user_logout.action">注销</a>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li><a class="nav-link" href="${pageContext.request.contextPath}/user_login.action">登录</a></li>
+				</c:otherwise>
+			</c:choose>
+	    </ul>
+	  </div>
+	</nav>
+	
+	<div class="container">
+		<h3>错题库 <span class="badge badge-secondary">Error Subject</span></h3>
+		<!-- 数据展示部分 -->
+		  <!-- 主数据 -->
+		  	<s:iterator value="list">
+		  		<div class="subject" data-sid="<s:property value="sid"/>" data-key="<s:property value="skey"/>" data-skey="<s:property value="studentkey"/>">
+                    <li> <s:property value="scontent"/></li>
+                    <ol>
+                        <li><label data-value="A"><s:property value="sa"/></label></li>
+                        <li><label data-value="B"><s:property value="sb"/></label></li>
+                        <li><label data-value="C"><s:property value="sc"/></label></li>
+                        <li><label data-value="D"><s:property value="sd"/></label></li>
+                    </ol>
+                </div>
+			</s:iterator>
+			<!-- 分页 -->
+		<table>
+			<tr>
+				<td>
+					<nav aria-label="Page navigation example">
+					  <ul class="pagination justify-content-end">
+					  	<li class="page-item disabled">
+					  		<a class="page-link">共 <B><s:property value="totalCount"/></B> 条记录, <B><s:property value="totalPage"/></B> 页</a>
+					  	</li>
+					  	<s:if test="currPage != 1">
+					    <li class="page-item">
+					      <a class="page-link" href="javascript:to_page(<s:property value="1" />)" tabindex="-1">首页</a>
+					    </li>
+					    <li class="page-item">
+					      <a class="page-link" href="javascript:to_page(<s:property value="currPage - 1" />)" tabindex="-1">前一页</a>
+					    </li>
+					    </s:if>
+					    
+					    <s:iterator var="i" begin="1" end="totalPage">
+							<s:if test="#i == currPage">
+								<li class="page-item disabled"><a class="page-link"><s:property value="#i"/></a></li>
+							</s:if>
+							<s:else>
+								<li class="page-item"><a class="page-link" href="javascript:to_page('<s:property value="#i"/>')"><s:property value="#i"/></a></li>
+							</s:else>
+						</s:iterator>
+					    
+					    <s:if test="currPage != totalPage">
+						    <li class="page-item">
+						      <a class="page-link" href="javascript:to_page(<s:property value="currPage + 1" />)" tabindex="-1">后一页</a>
+						    </li>
+						    <li class="page-item">
+						      <a class="page-link" href="javascript:to_page(<s:property value="totalPage" />)" tabindex="-1">尾页</a>
+						    </li>
+					    </s:if>
+						<li class="page-item">
+							到
+							<input class="btn btn-outline-success my-2 my-sm-0" type="text" size="1" id="page" name="currPage" value="${currPage}"/>
+							页
+						</li>	
+						<li class="page-item">
+							<input class="btn btn-outline-success my-2 my-sm-0" type="button" value="Go" onclick="to_page()"/>
+							</li>
+						  </ul>
+						</nav>
+					</td>
+				</tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+
+
+
+
+
+<%-- <s:property value="list.size"/>
 	<form id="paperForm" name="errorPaperForm"
 		action="${pageContext.request.contextPath }/studentPaper_errorSubjectPage.action?userid=${existUser.userid}&spid=<s:property value="spid"/>"
 		method=post>
@@ -74,9 +186,9 @@
 				</ul>
         </div>
         <!-- /.navbar-collapse -->
-    </nav>
+    </nav> --%>
 
-    <main class="container">
+    <%-- <main class="container">
         <div class="panel panel-default">
             <div class="panel-heading text-center">
                 <h3 class="panel-title">
@@ -109,42 +221,49 @@
                             <div>
                             <table>
 	                                <TR>
-										<TD><SPAN id=pagelink>
-												<DIV
-													style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-													共[<B><s:property value="totalCount"/></B>]条记录,[<B><s:property value="totalPage"/></B>]页
-													,每页显示
-													<select name="pageSize" onchange="to_page()">
-														<option value="3" <s:if test="pageSize == 3">selected</s:if>>3</option>
-														<option value="5" <s:if test="pageSize == 5">selected</s:if>>5</option>
-														<option value="10" <s:if test="pageSize == 10">selected</s:if>>10</option>
-													</select>
-													条
-													<s:if test="currPage != 1">
-													[<A href="javascript:to_page(<s:property value="1" />)">首页</A>]
-													[<A href="javascript:to_page(<s:property value="currPage - 1" />)">前一页</A>]
+										<TD>
+											<nav aria-label="Page navigation example">
+											  <ul class="pagination justify-content-end">
+											  	<li class="page-item disabled">
+											  		<a class="page-link">共 <B><s:property value="totalCount"/></B> 条记录, <B><s:property value="totalPage"/></B> 页</a>
+											  	</li>
+											  	<s:if test="currPage != 1">
+											    <li class="page-item">
+											      <a class="page-link" href="javascript:to_page(<s:property value="1" />)" tabindex="-1">首页</a>
+											    </li>
+											    <li class="page-item">
+											      <a class="page-link" href="javascript:to_page(<s:property value="currPage - 1" />)" tabindex="-1">前一页</a>
+											    </li>
+											    </s:if>
+											    
+											    <s:iterator var="i" begin="1" end="totalPage">
+													<s:if test="#i == currPage">
+														<li class="page-item disabled"><a class="page-link"><s:property value="#i"/></a></li>
 													</s:if>
-													<B>
-														<s:iterator var="i" begin="1" end="totalPage">
-															<s:if test="#i == currPage">
-																<s:property value="#i"/>
-															</s:if>
-															<s:else>
-																<a href="javascript:to_page('<s:property value="#i"/>')"><s:property value="#i"/></a> 
-															</s:else>
-														</s:iterator>
-													</B>
-													<s:if test="currPage != totalPage">
-													[<A href="javascript:to_page(<s:property value="currPage + 1" />)">后一页</A>] 
-													[<A href="javascript:to_page(<s:property value="totalPage" />)">尾页</A>]
-													</s:if>
+													<s:else>
+														<li class="page-item"><a class="page-link" href="javascript:to_page('<s:property value="#i"/>')"><s:property value="#i"/></a></li>
+													</s:else>
+												</s:iterator>
+											    
+											    <s:if test="currPage != totalPage">
+												    <li class="page-item">
+												      <a class="page-link" href="javascript:to_page(<s:property value="currPage + 1" />)" tabindex="-1">后一页</a>
+												    </li>
+												    <li class="page-item">
+												      <a class="page-link" href="javascript:to_page(<s:property value="totalPage" />)" tabindex="-1">尾页</a>
+												    </li>
+											    </s:if>
+												<li class="page-item">
 													到
-													<input type="text" size="3" id="page" name="currPage" />
+													<input class="btn btn-outline-success my-2 my-sm-0" type="text" size="1" id="page" name="currPage" value="${currPage}"/>
 													页
-													
-													<input type="button" value="Go" onclick="to_page()"/>
-												</DIV>
-										</SPAN></TD>
+												</li>	
+												<li class="page-item">
+													<input class="btn btn-outline-success my-2 my-sm-0" type="button" value="Go" onclick="to_page()"/>
+												</li>
+											  </ul>
+											</nav>
+										</TD>
 									</TR>
 								</table>
 								</s:if>
@@ -158,7 +277,7 @@
                 </div>
             </div>
         </div>
-    </main>
+    </main> --%>
     </form>
     <script>
     // 获取basePath 

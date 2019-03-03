@@ -18,6 +18,7 @@ label {
 .checked,
 .checked label {
     font-weight: bold;
+    color:red;
 }
 /*倒计时和题目统计*/
 .processor{
@@ -25,10 +26,9 @@ label {
     width: 200px;
     height: 200px;
     position: fixed;
-    border: 1px solid #DDDDDD;
     background-color: white;
     /*margin: 10px;*/
-    top: 60px;
+    top: 100px;
     right: 20px;
     z-index: 100;
 }
@@ -36,7 +36,6 @@ label {
     margin: 10px;
     width: 100%;
     height: 20px;
-    text-align: center;
     font-weight: bold;
     font-size: 20px;
 }
@@ -54,7 +53,7 @@ label {
     border: 1px solid #DDDDDD;
 }
 .answered{
-	background-color: #33CC00;	
+	background-color: #3caa46;
 }
 /*错误选项的样式*/
 .error{

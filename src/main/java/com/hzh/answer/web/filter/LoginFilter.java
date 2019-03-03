@@ -35,22 +35,30 @@ public class LoginFilter implements Filter {
 			throws IOException, ServletException {
 		this.request = (HttpServletRequest) request1;
 		this.response = (HttpServletResponse) response1;
-//		SysUser sysUser = (SysUser) request.getSession().getAttribute("existUser");
-//		System.out.println(sysUser.getUsername());
-		boolean isJsp = request.getRequestURI().contains("jsp");
-		if(isJsp) {
-			System.out.println("是jsp");
-			boolean isLoginJsp = request.getRequestURI().contains("/answerSystem/public/login.jsp");
-			// 过滤掉所有不是login.jsp的jspURL
-			if (!isLoginJsp) {
-				System.out.println("是login.jsp");
-				response.sendRedirect("/answerSystem/public/login.jsp");
-				return;
-			}
-		} else if(!request.getRequestURI().contains(".action")) {
+		String requestURI = request.getRequestURI();
+		boolean isLoginJsp = request.getRequestURI().contains("/answerSystem/public/login.jsp");
+		// 过滤掉所有不是login.jsp的jspURL
+		if (!isLoginJsp) {
+			System.out.println("是login.jsp");
 			response.sendRedirect("/answerSystem/public/login.jsp");
 			return;
-		} 
+		}
+//		boolean isJsp = requestURI.contains("jsp");
+//		if(isJsp) {
+//			System.out.println("是jsp");
+//			boolean isLoginJsp = request.getRequestURI().contains("/answerSystem/public/login.jsp");
+//			// 过滤掉所有不是login.jsp的jspURL
+//			if (!isLoginJsp) {
+//				System.out.println("是login.jsp");
+//				response.sendRedirect("/answerSystem/public/login.jsp");
+//				return;
+//			}
+//		} else if(requestURI.contains(".css") || requestURI.contains(".js") || requestURI.contains(".png") || requestURI.contains(".jpg")) {
+//			return;
+//		} else if(!requestURI.contains(".action")) {
+//			response.sendRedirect("/answerSystem/public/login.jsp");
+//			return;
+//		} 
 		
 		chain.doFilter(request, response);
 
