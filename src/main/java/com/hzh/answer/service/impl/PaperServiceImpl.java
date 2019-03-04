@@ -85,7 +85,14 @@ public class PaperServiceImpl implements PaperService {
 	@Override
 	public Integer savePaper(Paper paper) {
 		Integer saveStatus = 0;
-		Paper existPaper = paperDao.findOneByPname(paper.getPname());
+		Paper existPaper = null;
+		System.out.println(paper.getPname());
+		if(paper.getPname() != null) {
+			existPaper = paperDao.findOneByPname(paper.getPname());
+		} else {
+			saveStatus = -1;
+			return saveStatus;
+		}
 		if(existPaper != null) {
 			saveStatus = -1; 
 		} else {
